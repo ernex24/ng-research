@@ -1,0 +1,163 @@
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { Subject } from 'rxjs/Subject';
+import { TranslateService } from '@ngx-translate/core';
+
+import 'rxjs/add/operator/map';
+import * as CryptoJS from 'crypto-js';
+
+import { DataStorageService } from '../../shared/data-storage.service';
+import { APP_CONSTANTS } from '../../app-constants';
+import { IAppConstants } from '../../app-constants.interface';
+import { ModalService } from '../../core/modal/modal.service';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { environment } from '../../../environments/environment.prod';
+import { UtilsCifradorModel } from '../../core/utils-cifrador/utils-cifrador.model';
+import { UtilsCifradorService } from '../../core/utils-cifrador/utils-cifrador.service';
+import { LOGIN_CONSTANTS } from './login-constants';
+import { ILoginConstants } from './login-constants.interface';
+import { Router } from '@angular/router';
+import {StatusResponseModel} from '../../shared/status-response.model';
+
+@Injectable()
+export class LoginService {
+  errorMessageDescripcion$ = new Subject<String>();
+
+  constructor(private httpClient: HttpClient,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    @Inject(LOGIN_CONSTANTS) private constantsLogin: ILoginConstants,
+    private dataStorageService: DataStorageService,
+    private translate: TranslateService,
+    private utilsButtonService: UtilsButtonService,
+    private modalService: ModalService,
+    private router: Router,
+    private utilsCifradorService: UtilsCifradorService) { }
+
+
+  login(username: string, password: string): void {
+const utilCifrador = this.utilsCifradorService.encriptarDatos(new UtilsCifradorModel(this.constants.SECRET_PASSPHRASE, this.constants.KEY_HMAC_SHA1, '', [username, password]));
+const idioma = this.translate.getBrowserLang() != null ? this.translate.getBrowserLang().toUpperCase() : this.constants.IDIOMA;
+
+utilCifrador.estructura = idioma + this.constants.HMAC_SEPARATOR + utilCifrador.arrayDatos[0] + this.constants.HMAC_SEPARATOR + utilCifrador.arrayDatos[1];
+
+    const hash = this.utilsCifradorService.generadorHMACPublico(utilCifrador);
+
+    const request = {
+      'ANA_Login_Request': {
+        'data_00': hash,
+        'idioma': idioma,
+        'data_01': utilCifrador.arrayDatos[0].toString(),
+        'data_02': utilCifrador.arrayDatos[1].toString()
+      }
+    };
+
+    const req = new HttpRequest(this.constants.HTTP_REQUEST, this.dataStorageService.ejecutarServicio()
+      + this.constantsLogin.URL_LOGIN, request, { reportProgress: true });
+    // Realizamos la llamada Request
+    this.httpClient.request(req).subscribe(
+      (evento: HttpEvent<any>) => {
+        switch (evento.type) {
+          case HttpEventType.Sent:
+            // Abrimos el modal de cargando mientras se esta enviando la petición
+            const titulo = this.translate.get('Modal.AccesoLogin');
+            const imagen = this.translate.get('Modal.AccesoImagen');
+            const texto = this.translate.get('Modal.AccesoTexto');
+
+            this.modalService.openCargando(titulo, imagen, texto);
+            break;
+          case HttpEventType.Response: {
+              // Cerramos el modal de cargando cuando tenemos la respuesta
+              this.modalService.closeModal();
+              // Habilitamos el boton
+              this.utilsButtonService.submitedButtonChanged.next(false);
+              // Recuperamos la respuesta
+              const statusResponse: StatusResponseModel = { ...  evento.body.ANA_Login_Response};
+              // Comprobamos el resultado de la llamada Request
+              if ( statusResponse.status === this.constants.STATUS_OK) {
+                // Guardamos los datos de la sesion
+                this.dataStorageService.sesion = { ... evento.body.ANA_Login_Response};
+                // Accedo a Research
+                this.router.navigate(['/home/informes'], { queryParams: {'id': this.dataStorageService.sesion.id, 'token':
+                  this.utilsCifradorService.getToken(this.dataStorageService.sesion.id, this.dataStorageService.sesion.identificacion,
+                                this.dataStorageService.sesion.pin) }});
+              } else {
+                // Llamo al servicio de LogFront
+                this.errorMessageDescripcion$.next( statusResponse.errorMessageDescripcion);
+                this.delLogFront( evento.body.ANA_Login_Response, utilCifrador.key2, request);
+              }
+          }
+        }
+      },
+      (error: any) => {
+        this.modalService.closeModal();
+        // Habilitamos el boton
+        this.utilsButtonService.submitedButtonChanged.next(false);
+        // Recuperamos el mensaje de error genérico
+        this.mostrarError(this.constantsLogin.URL_LOGIN);
+      }
+    );
+  }
+
+  private mostrarError(error: string): void {
+    // Recuperamos el mensaje de error genérico
+    this.translate.get('Comun.ErrorPeticion', { server: error }).subscribe(
+      mensaje => {
+        // Informamos del error
+        this.errorMessageDescripcion$.next(mensaje);
+      });
+  }
+
+  delLogFront(data: any, key2: any, request: any): void {
+    // IDIOMA]--[TIPO_LOG]--[ORIGEN]--[IDENTIFICACION]--[ENTORNO_REAL]
+    const idioma = this.translate.getBrowserLang() != null ? this.translate.getBrowserLang().toUpperCase() : this.constants.IDIOMA;
+    let estrucLogFront = idioma + this.constants.HMAC_SEPARATOR + this.constantsLogin.LOGIN +
+      this.constants.HMAC_SEPARATOR + this.constantsLogin.ORIGEN + this.constants.HMAC_SEPARATOR +
+      data.email + this.constants.HMAC_SEPARATOR + this.constants.TRUE;
+    estrucLogFront = encodeURIComponent(estrucLogFront);
+    const hashLogFront = CryptoJS.HmacSHA1(estrucLogFront, key2).toString(CryptoJS.enc.Base64).replace(/[/]/g, '_');
+
+    const requestLogFront = {
+      'DEL_LogFront_Request': {
+        'entornoReal': this.constants.TRUE,
+        'identificacion': data.email,
+        'idioma': idioma,
+        'tipo_Log': this.constantsLogin.LOGIN,
+        'token': hashLogFront,
+        'origen': this.constantsLogin.ORIGEN,
+        'version_App': environment.version,
+        'log': [
+          {
+            'clase': this.constantsLogin.LOGIN,
+            'evento': 'onClick',
+            'peticion': JSON.stringify(request).replace(/"/g, '\''),
+            'respuesta': JSON.stringify(data).replace(/"/g, '\'')
+          }
+        ]
+      }
+    };
+
+    // Realizamos la llamada al servicio DEL_Log_Front
+    const reqLogFront = new HttpRequest(this.constants.HTTP_REQUEST, this.dataStorageService.ejecutarServicio() +
+      this.constantsLogin.URL_LOG_FRONT, requestLogFront, { reportProgress: true });
+    this.httpClient.request(reqLogFront).subscribe(
+      (eventoLog: HttpEvent<any>) => {
+        switch (eventoLog.type) {
+          case HttpEventType.Response: {
+            // Comprobamos el resultado de la llamada Request
+            const dataLogFront = eventoLog.body.DEL_LogFront_Response;
+            if (dataLogFront.status !== this.constants.STATUS_OK) {
+              // Recuperamos el mensaje de error genérico
+              this.mostrarError(this.constantsLogin.URL_LOGIN);
+            }
+          }
+        }
+      },
+      (errorLog: any) => {
+        // Habilitamos el boton
+        this.utilsButtonService.submitedButtonChanged.next(false);
+        // Recuperamos el mensaje de error genérico
+        this.mostrarError(this.constantsLogin.URL_LOG_FRONT);
+      }
+    );
+  }
+}

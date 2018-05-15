@@ -1,0 +1,18 @@
+export class SesionModel{
+
+  identificacion: string;
+  id_tipo_identificacion: string;
+  nombre: string;
+  apellidos: string;
+  email: string;
+  ultimo_Acceso: Date;
+  activo: boolean;
+  integrado: boolean;
+  direccion: string;
+  telefono: string;
+  id_Empresa: string;
+  descripcionEmpresa: string;
+  id: string;
+  pin: string;
+  aplicacion: string;
+}

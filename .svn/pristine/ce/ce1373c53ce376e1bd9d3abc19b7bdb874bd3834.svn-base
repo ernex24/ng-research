@@ -1,0 +1,85 @@
+<div class="mainLogin">
+  <div class="containerLogInCompletoPequeno">
+    <img class="logo" src="assets/img/imagenes_comunes/logo/gvc_logo.svg" alt="" />
+
+    <form [formGroup]="validarUsuarioForm" class="loguser1" (ngSubmit)="onSubmit()">
+
+      <h3><span class="titulo">{{ 'ValidarUsuarioComponent.DesbloquearUsuario' | translate }}</span></h3>
+
+
+      <div class="input-group">
+          <span class="input-group-addon gvc-icono-label">
+            <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+          </span>
+
+          <input type="{{showPassword ? 'text' : 'password'}}"
+                 class="form-control gvc-estilosInput-Passyfirma"
+                 formControlName="passwordNew" id="input_passwordNew"
+                 placeholder="{{ 'ValidarUsuarioComponent.Nueva' | translate }}"
+                 aria-label="Contraseña" aria-describedby="basic-addon1" />
+
+          <span class="input-group-btn">
+              <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow()">
+                <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+              </button>
+				  </span>
+
+        </div>
+
+        <div class="espacioAlerta gvc-center">
+          <span *ngIf="!validarUsuarioForm.get('passwordNew').valid && validarUsuarioForm.get('passwordNew').touched" class="invalid">
+            <p *ngIf="validarUsuarioForm.get('passwordNew').errors['required']">{{'ValidarUsuarioComponent.ContrasenaObligatoria' | translate }}</p>
+          </span>
+        </div>
+
+      <div class="input-group">
+          <span class="input-group-addon gvc-icono-label">
+            <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+          </span>
+        <input type="{{showPasswordConfirmar ? 'text' : 'password'}}"
+               class="form-control gvc-estilosInput-Passyfirma"
+               formControlName="passwordConf" id="input_passwordConf"
+               placeholder="{{ 'ValidarUsuarioComponent.Confirmar' | translate }}"
+               aria-label="Contraseña" aria-describedby="basic-addon1" />
+
+          <span class="input-group-btn">
+            <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShowconf()">
+              <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+            </button>
+				  </span>
+      </div>
+
+      <div class="espacioAlerta gvc-center">
+      <span *ngIf="!validarUsuarioForm.get('passwordConf').valid && validarUsuarioForm.get('passwordConf').touched" class="invalid">
+			  <p *ngIf="validarUsuarioForm.get('passwordConf').errors['required']">{{'ValidarUsuarioComponent.ContrasenaObligatoria' | translate }}</p>
+			</span>
+      </div>
+
+      <span class="titulo-h4">{{ 'ValidarUsuarioComponent.ResultadoOperacion' | translate }}</span>
+
+      <div class="input-group  gvc-center gvc-margin-textoResultado">
+        <span class="input-group-addon gvc-icono-label gvc-resultadoOperacion"> {{numero1}} + {{numero2}} = </span>
+        <input type="number" min="0" class="form-control gvc-estilosInput " formControlName=resultado id="resultado" placeholder="{{ 'ValidarUsuarioComponent.Resultado' | translate }}"
+               aria-label="Username" aria-describedby="basic-addon1" required pattern="[0-9]{1,3}" >
+      </div>
+
+      <div class="espacioAlerta gvc-center">
+        <span *ngIf="!validarUsuarioForm.get('resultado').valid && validarUsuarioForm.get('resultado').touched" class="invalid">
+          <p *ngIf="validarUsuarioForm.get('resultado').errors['required']">{{ 'ValidarUsuarioComponent.ResultadoObligatoria' | translate }}</p>
+        </span>
+      </div>
+
+      <input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+             [disabled]="!validarUsuarioForm.valid || !isServidorRest || (submited$ | async)"
+             value="{{ 'ValidarUsuarioComponent.Enviar' | translate }}">
+
+    </form>
+
+  </div>
+
+    <div *ngIf="errorMessageDescripcion !== ''" class="alertas">
+      <img src="assets/img/imagenes_comunes/interfaz/ico_alerta_s.svg">
+      <p>{{ errorMessageDescripcion }}</p>
+    </div>
+
+</div>

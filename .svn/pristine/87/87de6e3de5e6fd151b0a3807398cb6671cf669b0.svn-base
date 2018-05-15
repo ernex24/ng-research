@@ -1,0 +1,109 @@
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { APP_CONSTANTS } from '../../app-constants';
+import { IAppConstants } from '../../app-constants.interface';
+import { UtilsCifradorService } from '../../core/utils-cifrador/utils-cifrador.service';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { SesionModel } from '../../shared/sesion/sesion.model';
+import { LOGIN_CONSTANTS } from './login-constants';
+import { ILoginConstants } from './login-constants.interface';
+import { Injectable, Inject} from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import {LoginService} from './login.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/subscription';
+import { Subject } from 'rxjs/Subject';
+import * as CryptoJS from 'crypto-js';
+
+@Injectable()
+export class LoginGuard implements CanActivate {
+
+  constructor (private router: Router,
+    private translate: TranslateService,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    @Inject(LOGIN_CONSTANTS) private constantsLogin: ILoginConstants,
+    private dataStorageService: DataStorageService,
+    private httpClient: HttpClient,
+    private utilsCifradorService: UtilsCifradorService) {
+  }
+
+  errorMessageDescripcionChanged = new Subject<String>();
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+    let logeado: boolean = false;
+
+    if (this.dataStorageService.sesion === undefined) {
+      const id = state.root.queryParams['id'];
+      const token = state.root.queryParams['token'];
+      if (id !== undefined && token !== undefined) {
+        // Llamamos al login Token para validar si es el usuario logeado.
+        const request = {
+          'ANA_LoginToken_Request': {
+          'data_00': id,
+          'data_01': token,
+          'idioma': this.translate.getBrowserLang() != null ? this.translate.getBrowserLang().toUpperCase() : this.constants.IDIOMA,
+          }
+        };
+
+        const llamada = new HttpRequest (this.constants.HTTP_REQUEST, this.dataStorageService.ejecutarServicio() +
+          this.constantsLogin.URL_LOGIN_TOKEN, request, { reportProgress: true });
+        this.httpClient.request(llamada).subscribe(
+          (evento: HttpEvent<any>) => {
+            switch (evento.type) {
+              case HttpEventType.Response: {
+                // Comprobamos el resultado de la llamada Request
+                // Guardamos los datos de la sesion
+                this.dataStorageService.sesion = { ... evento.body.ANA_LoginToken_Response };
+                if ( this.dataStorageService.sesion.status !== this.constants.STATUS_OK ) {
+                   // Regresamos al login
+                  this.router.navigate(['login']);
+                  logeado = false;
+                  this.errorMessageDescripcionChanged.next( this.dataStorageService.sesion.errorMessageDescripcion);
+                } else {
+                  // Accedo a Home
+                  this.router.navigate(['home/informes'], { queryParams: {'id': this.dataStorageService.sesion.id, 'token':
+                      this.utilsCifradorService.getToken(this.dataStorageService.sesion.id, this.dataStorageService.sesion.identificacion,
+                                  this.dataStorageService.sesion.pin) }});
+                  logeado = true;
+                }
+              }
+          }
+        },
+          (error: any) => {
+            // Redirigimos al Loogin
+            this.router.navigate(['login']);
+            logeado = false;
+            // Recuperamos el mensaje de error genérico
+            this.translate.get('Comun.ErrorPeticion', { server: error }).subscribe(
+              mensaje => {
+                // Informamos del error
+                this.errorMessageDescripcionChanged.next(mensaje);
+              });
+          });
+
+      } else {
+        // Redirigimos al Loogin
+        this.router.navigate(['login']);
+        logeado = false;
+        if (this.dataStorageService.sesion === undefined) {
+          this.dataStorageService.sesion = new SesionModel();
+          this.dataStorageService.sesion.status = this.constants.STATUS_ERROR;
+        }
+
+         // Lanzamos error de autentificación
+            this.translate.get('LoginComponent.ErrorAutentificacion').subscribe(
+              mensaje => {
+                // Informamos del error
+                this.dataStorageService.sesion.errorMessageDescripcion = mensaje;
+              });
+      }
+    } else {
+      logeado = true;
+    }
+
+    return logeado;
+  }
+}

@@ -1,0 +1,72 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+@Component({
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
+})
+export class SidebarComponent implements OnInit {
+
+  informes = false;
+  recomendaciones = false;
+  dividendos = false;
+  favoritos = false;
+
+  setClasses() {
+    const classes =  {
+      informesh: this.informes,
+    };
+    return classes;
+  }
+
+  setClasses2() {
+    const classes =  {
+      recomendacionesh: this.recomendaciones,
+    };
+    return classes;
+  }
+
+  setClasses3() {
+    const classes =  {
+      dividendosh: this.dividendos,
+    };
+    return classes;
+  }
+
+  setClasses4() {
+    const classes =  {
+      favoritosh: this.favoritos,
+    };
+    return classes;
+  }
+
+  constructor(private router: Router) {
+    router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        if (this.router.url === '/' || this.router.url === '/home/informes') {
+            this.informes = true;
+            this.recomendaciones = false;
+            this.dividendos = false;
+            this.favoritos = false;
+        } else if (this.router.url === '/home/recomendaciones') {
+            this.informes = false;
+            this.recomendaciones = true;
+            this.dividendos = false;
+            this.favoritos = false;
+        } else if (this.router.url === '/home/dividendos') {
+            this.informes = false;
+            this.recomendaciones = false;
+            this.dividendos = true;
+            this.favoritos = false;
+        } else if (this.router.url === '/home/favoritos') {
+            this.informes = false;
+            this.recomendaciones = false;
+            this.dividendos = false;
+            this.favoritos = true;
+          }
+      }
+     });
+  }
+  ngOnInit() { }
+}

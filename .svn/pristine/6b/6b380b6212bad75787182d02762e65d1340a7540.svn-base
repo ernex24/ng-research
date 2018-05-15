@@ -1,0 +1,7 @@
+
+<div class="modal-body text-center">
+		<div>
+      <p>{{texto}}</p>
+      <button type="button" class="btn btn-default gvc-button" (click)="confirmar()">{{ 'Modal.Aceptar' | translate }}</button>
+    </div>
+ </div>

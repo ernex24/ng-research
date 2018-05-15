@@ -1,0 +1,84 @@
+import {Inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
+
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/catch';
+
+import {APP_CONSTANTS} from '../../app-constants';
+import {IAppConstants} from '../../app-constants.interface';
+import {DataStorageService} from '../../shared/data-storage.service';
+import {LoginTokenService} from './login-token.service';
+import {StatusResponseModel} from '../../shared/status-response.model';
+
+@Injectable()
+export class LoginGuard implements CanActivate, CanActivateChild {
+
+  constructor (private router: Router,
+    private loginTokenService: LoginTokenService,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    private dataStorageService: DataStorageService,
+    private httpClient: HttpClient) {
+  }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    console.log("canActivate")
+    // Evaluo si la sesion es nula
+    if (this.dataStorageService.sesion === null) {
+      // Recupero los parametros del queryParams
+      const id = state.root.queryParams['id'];
+      const token = state.root.queryParams['token'];
+      // So no son undefined llamo al login token
+      if (id !== undefined && token !== undefined) {
+        // Llamo al recuperar el servidor rest
+        return this.dataStorageService.getRestServers()
+          // Reultado de la peticion
+          .map((resultado: any) => resultado.value)
+          // Con el switchMap cancelamos los eventos precios que aun no hayan acabado y transformamos el resultado
+          .switchMap(resultado =>{
+            // Si el resultado es true
+            if(resultado) {
+              // Recuperamos los datos del login token
+              return this.loginTokenService.loginToken(id, token)
+                .map(
+                  (response: any) => {
+                    // Mapeamos los datos
+                    let statusResponse: StatusResponseModel = {...response.ANA_LoginToken_Response};
+                    // Si el status es OK guardmos los datos en la sesion
+                    if (statusResponse.status === this.constants.STATUS_OK) {
+                      this.dataStorageService.sesion = {...response.ANA_LoginToken_Response};
+                      return true;
+                    } else {
+                      this.loginTokenService.errorMessageDescripcion = statusResponse.errorMessageDescripcion;
+                      this.router.navigate(['/acceso/login']);
+                      return false;
+                    }
+                  }).catch((error: any) => {
+                    // En caso de error nos dirigimos al login
+                    this.router.navigateByUrl('/acceso/login');
+                    return Observable.of(false);
+                  })
+            }else {
+              // En caso de error vamos al login
+              this.router.navigateByUrl('/acceso/login');
+              return Observable.of(false);
+            }
+          });
+      } else {
+        // En caso de error vamos al login
+        this.router.navigate(['/acceso/login']);
+        return Observable.of(false);
+      }
+    }else{
+      // Retornamos un true
+      return Observable.of(true);
+    }
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    console.log("canActivateChild")
+    return this.canActivate(route, state);
+  }
+}

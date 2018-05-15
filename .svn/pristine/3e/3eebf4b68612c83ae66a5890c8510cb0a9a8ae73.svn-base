@@ -1,0 +1,319 @@
+/* ==========================================================================
+   Menu lateral
+   ========================================================================== */
+
+.sidebar-navG {
+  position: absolute;
+  top: 104px;
+  width: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: -140px;
+}
+
+.menuHeaderG img {
+  margin: 40px 0 0 18px;
+}
+
+#sidebar-wrapperG:hover .redes {
+  display: block;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.menuLateralG {
+  padding-top: 26px;
+  padding-left: -100px;
+}
+
+.menuLateralG li {
+  height: 66px;
+  text-align: left;
+}
+
+.menuLateralG span {
+  margin: 24px 0 0 90px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 200px;
+}
+
+.menuLateralG span img {
+  margin: 0 0 0 -50px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+/* ==========================================================================
+   Iconos Menu Lateral
+   ========================================================================== */
+
+.dividendosh{
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/dividendosh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 30px;
+  background-color: #41CBD2;
+  height: 66px;
+  width: 320px;
+  display: block;
+}
+
+.informesh{
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/informeh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 30px;
+  background-color: #41CBD2;
+  height: 66px;
+  width: 320px;
+  display: block;
+}
+
+.recomendacionesh{
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/recomendacionesh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 30px;
+  background-color: #41CBD2;
+  height: 66px;
+  width: 320px;
+  display: block;
+}
+
+.favoritosh{
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/favoritosh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 30px;
+  background-color: #41CBD2;
+  height: 66px;
+  width: 320px;
+  display: block;
+}
+
+
+.active-link {
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 30px;
+  background-color: #41CBD2;
+  height: 66px;
+  width: 320px;
+  display: block;
+}
+
+
+li:hover h2 {
+  color: #09595d;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.menu-1 {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/informe.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 26px;
+}
+
+li.menu-1:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/informeh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-color: #1dacb3;;
+  background-size: 30px;
+  transition: all 0.3s;
+  border-radius: 0;
+}
+
+.menu-2 {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/recomendaciones.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 26px;
+}
+
+li.menu-2:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/recomendacionesh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-color: #1dacb3;;
+  background-size: 30px;
+  transition: all 0.3s;
+  border-radius: 0;
+}
+
+.menu-3 {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/dividendos.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 34px;
+}
+
+li.menu-3:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/dividendosh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 40px;
+  transition: all 0.3s;
+  background-color: #1dacb3;
+  border-radius: 0;
+
+}
+
+.menu-4 {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/informe-valores.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-size: 28px;
+}
+
+li.menu-4:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/informe-valoresh.svg");
+  background-repeat: no-repeat;
+  background-position: left 32px center;
+  background-color: #1dacb3;
+  background-size: 34px;
+  transition: all 0.3s;
+  border-radius: 0;
+}
+
+.menu-5 {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/favoritos.svg");
+  background-repeat: no-repeat;
+  background-position: left 30px center;
+  background-size: 34px;
+}
+
+li.menu-5:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/favoritosh.svg");
+  background-repeat: no-repeat;
+  background-position: left 30px center;
+  background-color: #1dacb3;
+  background-size: 38px;
+  transition: all 0.3s;
+  border-radius: 0;
+
+}
+
+#facebook {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/facebook.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 10px;
+}
+
+#facebook:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/facebookh.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 10px;
+  transition: all 0.3s;
+}
+#facebook:active {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/facebook.svg");
+}
+
+#linkedin {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/linkedin.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 22px;
+}
+
+#linkedin:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/linkedinh.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 22px;
+  transition: all 0.3s;
+}
+
+#linkedin:active {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/linkedin.svg");
+}
+
+#twitter {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/twitter.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 22px;
+}
+
+#twitter:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/twitterh.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 22px;
+  transition: all 0.3s;
+}
+
+#twitter:active {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/twitter.svg");
+}
+
+#youtube {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/youtube.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 22px;
+}
+
+#youtube:hover {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/youtubeh.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 30px;
+  height: 30px;
+  background-size: 22px;
+  transition: all 0.3s;
+}
+
+#youtube:active {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/youtube.svg");
+}
+
+
+.redes {
+  display: none;
+}
+
+.redes span {
+  margin: 30px 20px 0 30px;
+}
+
+/* ==========================================================================
+   Hover Seleccion de valores
+   ========================================================================== */
+
+.sidebarHover{
+  top: 0;
+  left: 320px;
+  height: 100% !important;
+  width: 90px;
+  background-color: #1d1d1d;
+  color: #FFFFFF;
+  position: fixed;
+}
+
+.uldeLinks{}
+
+.lideLinks{}

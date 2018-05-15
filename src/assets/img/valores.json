@@ -1,0 +1,275 @@
+{ "results": [
+{
+		"Ticker": "ABE",
+		"Nombre": "Abertis Infraestructuras",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0111845014",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "ANA",
+		"Nombre": "Acciona",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0125220311",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "ACX",
+		"Nombre": "Acerinox",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0132105018",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "ACS",
+		"Nombre": "Actividades de Construcción y Servicios",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0167050915",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "AENA",
+		"Nombre": "AENA",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0105046009",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "AMS",
+		"Nombre": "Amadeus",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0109067019",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "MTS",
+		"Nombre": "Arcelor Mittal",
+		"Ciudad": " Ciudad de Luxemburgo",
+		"ISISN": "LU0323134006",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "SAB",
+		"Nombre": "Banco de Sabadell",
+		"Ciudad": " Alicante",
+		"ISISN": "ES0113860A34",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "SAN",
+		"Nombre": "Banco Santander",
+		"Ciudad": " Santander",
+		"ISISN": "ES0113900J37",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "BKIA",
+		"Nombre": "Bankia",
+		"Ciudad": " Valencia",
+		"ISISN": "ES0113307021",
+		"Tipo": "Valores",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "BKT",
+		"Nombre": "Bankinter",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0113679I37",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "BBVA",
+		"Nombre": "Banco Bilbao Vizcaya Argentaria",
+		"Ciudad": " Bilbao",
+		"ISISN": "ES0113211835",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "CABK",
+		"Nombre": "CaixaBank",
+		"Ciudad": " Valencia",
+		"ISISN": "ES0140609019",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "CLNX",
+		"Nombre": "Cellnex",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0105066007",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "DIA",
+		"Nombre": "Distribuidora Internacional de Alimentación",
+		"Ciudad": " Las Rozas",
+		"ISISN": "ES0126775032",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "ENG",
+		"Nombre": "Enagás",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0130960018",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "ELE",
+		"Nombre": "Endesa",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0130670112",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "FER",
+		"Nombre": "Ferrovial",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0118900010",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "GAM",
+		"Nombre": "Gamesa Corporación Tecnológica",
+		"Ciudad": " Zamudio",
+		"ISISN": "ES0143416115",
+		"Tipo": "Fondos",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "GAS",
+		"Nombre": "Gas Natural SDG",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0116870314",
+		"Tipo": "MAB",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "GRF",
+		"Nombre": "Grifols",
+		"Ciudad": " Barcelona",
+		"ISISN": "ES0171996012",
+		"Tipo": "MAB",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "IAG",
+		"Nombre": "International Airlines Group",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0177542018",
+		"Tipo": "MAB",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "IBE",
+		"Nombre": "Iberdrola",
+		"Ciudad": " Bilbao",
+		"ISISN": "ES0144580Y14",
+		"Tipo": "MAB",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "ITX",
+		"Nombre": "Inditex",
+		"Ciudad": " Arteixo",
+		"ISISN": "ES0148396015",
+		"Tipo": "MAB",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "IDR",
+		"Nombre": "Indra Sistemas",
+		"Ciudad": " Alcobendas",
+		"ISISN": "ES0118594417",
+		"Tipo": "MAB",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "COL",
+		"Nombre": "Inmobiliaria Colonial",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0139140174",
+		"Tipo": "Warrants",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "MAP",
+		"Nombre": "MAPFRE",
+		"Ciudad": " Majadahonda",
+		"ISISN": "ES0124244E34",
+		"Tipo": "Warrants",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "TL5",
+		"Nombre": "Mediaset España Comunicación",
+		"Ciudad": " Alcobendas",
+		"ISISN": "ES0152503035",
+		"Tipo": "Warrants",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "MRL",
+		"Nombre": "MERLIN Properties",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0105025003",
+		"Tipo": "Warrants",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "REE",
+		"Nombre": "Red Eléctrica Corporación",
+		"Ciudad": " Alcobendas",
+		"ISISN": "ES0173093115",
+		"Tipo": "Warrants",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "REP",
+		"Nombre": "Repsol",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0173516115",
+		"Tipo": "Warrants",
+		"img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "TRE",
+		"Nombre": "Técnicas Reunidas",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0178165017",
+		"Tipo": "Valores",
+    "img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "TEF",
+		"Nombre": "Telefónica",
+		"Ciudad": " Madrid",
+		"ISISN": "ES0178430E18",
+		"Tipo": "Valores",
+    "img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	},
+	{
+		"Ticker": "VIS",
+		"Nombre": "Viscofan",
+		"Ciudad": " Tajonar",
+		"ISISN": "ES0184262212",
+		"Tipo": "Valores",
+    "img": "assets/img/imagenes_comunes/interfaz/spain.png"
+	}
+]
+}

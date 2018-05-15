@@ -1,0 +1,179 @@
+import {Component, ViewChild, ElementRef, OnInit, ViewEncapsulation, HostListener, TemplateRef} from '@angular/core';
+import {DataStorageService} from '../../shared/data-storage.service';
+import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import {UtilsButtonService} from '../../core/utils-button/utils-button.service';
+import {FormGroup} from '@angular/forms';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class NavbarComponent implements OnInit {
+
+  cambiarContrasenyaForm: FormGroup;
+  cambiarEmail: FormGroup;
+
+  showPassword: boolean = false;
+  showPassword2: boolean = false;
+  showPassword3: boolean = false;
+
+  private wasInside: boolean = true;
+
+  isCollapsed: boolean = true;
+  isCollapsed3: boolean = true;
+
+  nombre: string;
+  empresa: string;
+  email: string;
+
+  modalRef: BsModalRef;
+  message: string;
+  id: string;
+  token: string;
+
+  private config = {
+    animated: false,
+    keyboard: true,
+    backdrop: true,
+    ignoreBackdropClick: false,
+  };
+
+  informeNav = false;
+  recomendacionesNav = false;
+  favoritosNav = false;
+  dividendosNav = false;
+
+  setNavClasses() {
+    const classes = {
+    informeNavTitle: this.informeNav,
+    recomendacionesNavTitle: this.recomendacionesNav,
+    favoritosNavTitle: this.favoritosNav,
+    dividendosNavTitle: this.dividendosNav
+    };
+    return classes;
+  }
+
+  constructor(private dataStorageService: DataStorageService,
+              private router: Router,
+              private modalService: BsModalService,
+              private activatedRoute: ActivatedRoute,
+              private utilsButtonService: UtilsButtonService) {
+
+    // Cambiar el icono y el nombre según la dirección de la ruta
+    router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        if (this.router.url === '**' || this.router.url.includes('/home/informes')) {
+            this.informeNav = true;
+            this.recomendacionesNav = false;
+            this.favoritosNav = false;
+            this.dividendosNav = false;
+            console.log('estoy en informes');
+        } else if (this.router.url.includes('/home/recomendaciones')) {
+            this.informeNav = false;
+            this.recomendacionesNav = true;
+            this.favoritosNav = false;
+            this.dividendosNav = false;
+            console.log('estoy en recomendaciones');
+        } else if (this.router.url.includes('/home/dividendos')) {
+            this.informeNav = false;
+            this.recomendacionesNav = false;
+            this.favoritosNav = false;
+            this.dividendosNav = true;
+            console.log('estoy dividendos');
+        } else if (this.router.url.includes('/home/favoritos')) {
+            this.informeNav = false;
+            this.recomendacionesNav = false;
+            this.favoritosNav = true;
+            this.dividendosNav = false;
+            console.log('estoy favoritos');
+        }
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.nombre = this.dataStorageService.sesion.nombre;
+    this.empresa  = this.dataStorageService.sesion.descripcionEmpresa;
+
+    this.id = this.activatedRoute.snapshot.queryParams["id"];
+    this.token = this.activatedRoute.snapshot.queryParams["token"];
+  }
+
+  // LogOut Salir de la aplicación
+  openModalSalir(template) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+
+
+  onLogOut() {
+    this.dataStorageService.sesion = null;
+    this.router.navigate(['/acceso/login']);
+  }
+
+  confirm(): void {
+    this.modalRef.hide();
+    this.onLogOut();
+  }
+
+  decline(): void {
+    this.modalRef.hide();
+  }
+
+  // Abre modal para cambiar email asociado
+  cambiarMail(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+
+  // Abre modal para cambiar la contraseña
+  cambiarContrasenya(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+
+  onToggleShow() {
+    // Muestro el password
+    this.showPassword = this.utilsButtonService.toggleShow(this.showPassword);
+  }
+
+  onToggleShow2() {
+    // Muestro el password
+    this.showPassword2 = this.utilsButtonService.toggleShow(this.showPassword2);
+  }
+
+  onToggleShow3() {
+    // Muestro el password
+    this.showPassword3 = this.utilsButtonService.toggleShow(this.showPassword3);
+  }
+
+  // Escucha los clicks dentro de el componente
+  @HostListener ('click')
+  clickInside() {
+    this.wasInside = true;
+  }
+
+  // Cierra el menu si se hace click afuera del componente
+  @HostListener ('document:click')
+  clickout() {
+    if (!this.wasInside) {
+      if (!this.isCollapsed){
+        this.isCollapsed = true;
+      }
+    }
+    this.wasInside = false;
+  }
+
+
+
+}
+
+
+
+
+
+
+

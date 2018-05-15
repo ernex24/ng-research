@@ -1,0 +1,42 @@
+      <footer>
+        <div class="d-flex justify-content-center">
+          <div class="p-2">
+            <h2><a (click)="openModal('legal')">{{ 'FooterComponent.InformacionLegal' | translate }}</a></h2>
+          </div>
+          <div class="p-2">
+            <h2><a (click)="openModal('privacidad')">{{ 'FooterComponent.PoliticaPrivacidad' | translate }}</a></h2>
+          </div>
+          <div class="p-2">
+            <h2><a (click)="openModal('terminos')">{{ 'FooterComponent.TerminosUso' | translate }}</a></h2>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="textoFooter">
+            <h6>
+              <span class="caption">
+              {{ 'FooterComponent.FooterTexto1' | translate }}
+              {{fecha}}{{ 'FooterComponent.FooterTexto2' | translate }}
+              {{version}}
+              </span>
+            </h6>
+          </div>
+        </div>
+      </footer>
+
+      <div class="norton">
+        <table title="{{ 'FooterComponent.NortonTitle' | translate }}">
+          <tr>
+            <td>
+              <script src="https://seal.websecurity.norton.com/getseal?host_name=canalonline.gvcgaesco.es&amp;size=S&amp;use_flash=NO&amp;use_transparent=NO&amp;lang=es"></script>
+              <br/>
+              <a href="https://www.symantec.com/es/es/ssl-certificates" target="_blank"
+                 style="color:#000000; text-decoration:none;
+                        font:bold 7px verdana,sans-serif;
+                        letter-spacing:.5px;
+                        text-align:center;
+                        margin:0;
+                        padding:0;"></a>
+            </td>
+          </tr>
+        </table>
+      </div>

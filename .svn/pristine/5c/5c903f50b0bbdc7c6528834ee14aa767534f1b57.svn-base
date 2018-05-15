@@ -1,0 +1,173 @@
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark colorBarra2">
+  <a class="filtrar-informes" ></a>
+  <button class="navbar-toggler" (click)="isCollapsed2 = !isCollapsed2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+  <div class="navbar-collapse" id="navbarSupportedContent" [collapse]="!isCollapsed2" >
+    <ul class="navbar-nav menu-responsive1">
+      <li class="nav-item botonesNav">
+        <button class="filtrar"> {{ 'Navbar.UltimasPublicaciones' | translate }} </button>
+      </li>
+      <li class="nav-item botonesNav">
+        <button class="filtrar calendario" (click)="dp.toggle()" ><img class="icon-menu" src="assets/img/imagenes_comunes/interfaz/calendario.svg"><span class="fechaSelect"> {{ bsValue | date }}</span></button>
+      </li>
+      <li class="nav-item botonesNav" dropdown >
+        <button dropdownToggle type="button" class="filtrar"> {{ 'Navbar.Sector' | translate }} </button>
+        <ul *dropdownMenu class="dropdown-menu gvc-dropdown-menu" role="menu">
+          <li *ngFor=" let item of listaSectores" role="menuitem"><a class="dropdown-item itemListaDrop">{{ item.descripcion | titlecase }}</a></li>
+        </ul>
+      </li>
+      <li class="nav-item botonesNav" dropdown>
+        <button dropdownToggle type="button" class="filtrar"> {{ 'Navbar.Companyia' | translate }} </button>
+        <ul *dropdownMenu class="dropdown-menu gvc-dropdown-menu" role="menu">
+          <li *ngFor=" let item of listaEmpresas" role="menuitem"><a class="dropdown-item itemListaDrop">{{ item.descripcion }}</a></li>
+        </ul>
+      </li>
+      <li class="nav-item botonesNav" dropdown>
+        <button dropdownToggle type="button" class="filtrar"> {{ 'Navbar.TipoInforme' | translate }} </button>
+        <ul *dropdownMenu class="dropdown-menu gvc-dropdown-menu" role="menu">
+          <li *ngFor=" let item of listaInformes" role="menuitem"><a class="dropdown-item itemListaDrop">{{ item.descripcion | titlecase }}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="col-xs-12 col-12 col-md-4 form-group">
+  <span type="text" class="form-control" [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker [(bsValue)]="bsValue"></span>
+</div>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 lista" id="grid-wrapper">
+
+      <div>
+        <ul class="listaPadre">
+          <li class="tituloLista">
+            <ul class="rowItem">
+              <li class="titulopdelalista"><h5>Titulo de la Lista de informes</h5></li>
+              <li class="verMasboton"><a><p>Ver Más</p></a></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star"  type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista">25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"> </li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <app-noticias></app-noticias>
+
+      <app-eventos></app-eventos>
+
+
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 lista no-left-gutters">
+
+      <div>
+        <ul class="listaPadre">
+          <li class="tituloLista">
+            <ul class="rowItem">
+              <li class="titulopdelalista"><h5>Titulo de la Lista de informes</h5></li>
+
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="rowItem">
+              <li class="estrellainput"><input class="star" type="checkbox"></li>
+              <li class="titulodeImforme">Titulo de informe</li>
+              <li class="fechaLista" >25 de enero de 2018</li>
+              <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+              <li><input type="checkbox"></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <app-blog></app-blog>
+
+      <app-ultimos-eventos></app-ultimos-eventos>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+

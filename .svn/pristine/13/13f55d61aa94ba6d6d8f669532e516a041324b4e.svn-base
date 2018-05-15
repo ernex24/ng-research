@@ -1,0 +1,122 @@
+/* ==========================================================================
+    Layout general
+   	========================================================================== */
+
+.bg-gris {
+  min-height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #dde0e7;
+  background-image: -webkit-gradient(linear, left top, right top, from(#D1D4DB), to(#E8EBF3));
+  background-image: linear-gradient(to right, #D1D4DB 0%, #E8EBF3 100%);
+}
+
+#page-content-wrapper {
+  width: 100%;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#wrapper {
+  padding-left: 90px;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#sidebar-wrapperG {
+  z-index: 10000;
+  cursor: pointer;
+  left: 0;
+  width: 90px;
+  position: fixed;
+  height: 100%;
+  overflow: hidden;
+  background-image: linear-gradient(165deg, black 0%, #1d1d1d 100%);
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#sidebar-wrapperG:hover {
+  width: 320px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#sidebar-wrapperG:hover .redes {
+  display: block;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.menuHeaderG {
+  background-image: url("../../assets/img/imagenes_comunes/logo/gcv-logoMLateral.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 130px;
+}
+
+#sidebar-wrapperG:hover .menuHeaderG {
+  background-image: url("../../assets/img/imagenes_comunes/logo/gcv-logoMLateralXL.png");
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  #wrapper {
+    padding-left: 90px;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+  }
+  #sidebar-wrapperG {
+    width: 90px;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+  }
+  #page-content-wrapper {
+    width: 100%;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+  }
+
+}
+
+@media only screen and (max-device-width: 768px) {
+
+  #sidebar-wrapperG {
+    display: none;
+  }
+
+  #wrapper {
+    padding-left: 0;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+  }
+
+}
+
+
+@media (max-width: 767px) {
+  #wrapper {
+   display: none;
+  }
+}
+
+@media only screen and (max-device-width: 767px) {
+  #wrapper {
+    display: block;
+  }
+}
+
+.carousel-control {
+  display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+
+

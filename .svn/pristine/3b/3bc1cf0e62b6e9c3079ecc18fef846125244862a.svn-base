@@ -1,0 +1,89 @@
+import { Component } from '@angular/core';
+import {GridOptions} from 'ag-grid';
+
+@Component({
+  selector: 'app-panel',
+  templateUrl: './panel.component.html',
+  styleUrls: ['./panel.component.css']
+})
+export class PanelComponent {
+
+  gridOptions: GridOptions;
+  columnDefs: any[];
+  rowData: any[];
+  domLayout;
+
+  constructor() {
+    this.gridOptions = <GridOptions>{};
+
+    this.columnDefs = [
+      {
+        headerName: 'Titulo Lista de Informes',
+        field: 'titulo',
+        minWidth: 200,
+        maxWidth: 400,
+        cellStyle: {'font-weight': '600', 'justify-content': 'left'}
+      },
+      {
+        headerName: '', field: 'fecha'
+      },
+      {
+        headerName: '', field: 'pdf'
+      },
+      {
+        headerName: '', field: 'selector'
+      },
+    ];
+
+
+    this.rowData = [
+      {
+        titulo: 'Titulo del informe',
+        fecha: 'dd.mm.aaaa',
+        pdf: 'PDF',
+        selector: 'selector'
+      },
+      {
+        titulo: 'Titulo del informe',
+        fecha: 'dd.mm.aaaa',
+        pdf: 'PDF',
+        selector: 'selector'
+      },
+      {
+        titulo: 'Titulo del informe',
+        fecha: 'dd.mm.aaaa',
+        pdf: 'PDF',
+        selector: 'selector'
+      },
+      {
+        titulo: 'Titulo del informe',
+        fecha: 'dd.mm.aaaa',
+        pdf: 'PDF',
+        selector: 'selector'
+      }
+    ];
+    this.domLayout = 'autoHeight';
+    this.gridOptions.rowHeight = 40;
+  }
+
+
+  onGridSizeChanged(params) {
+    const gridWidth = document.getElementById('grid-wrapper').offsetWidth;
+    const columnsToShow = [];
+    const columnsToHide = [];
+    let totalColsWidth = 0;
+    const allColumns = params.columnApi.getAllColumns();
+    for (let i = 0; i < allColumns.length; i++) {
+      const column = allColumns[i];
+      totalColsWidth += column.getMinWidth();
+    }
+    params.columnApi.setColumnsVisible(columnsToShow, true);
+    params.columnApi.setColumnsVisible(columnsToHide, false);
+    params.api.sizeColumnsToFit();
+  }
+
+  onGridReady(params) {
+    params.api.sizeColumnsToFit();
+  }
+}
+

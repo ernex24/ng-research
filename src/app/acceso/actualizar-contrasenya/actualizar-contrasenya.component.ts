@@ -1,0 +1,142 @@
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { ActualizarContrasenyaService } from './actualizar-contrasenya.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import {DataStorageService} from '../../shared/data-storage.service';
+
+@Component({
+  selector: 'app-actualizar-contrasenya',
+  templateUrl: './actualizar-contrasenya.component.html',
+})
+export class ActualizarContrasenyaComponent implements OnInit, OnDestroy {
+  actualizarContrasenaForm: FormGroup;
+  numero1: number;
+  numero2: number;
+  showPassword = false;
+  showPasswordConfirmar = false;
+  submited$: Observable<boolean>;
+  errorMessageDescripcion: any = '';
+  private subscriptionActualizarContrasenya: Subscription;
+  idioma: string;
+  id_link: string;
+  isServidorRest = false;
+  private subscriptionRestServer: Subscription;
+
+  constructor(private translate: TranslateService,
+    private dataStorageService: DataStorageService,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService,
+    private actualizarContrasenyaService: ActualizarContrasenyaService,
+    private state: Router) { }
+
+  ngOnInit() {
+     // Gestion del form
+     this.actualizarContrasenaForm = new FormGroup({
+     'passwordNew': new FormControl(null, [Validators.required]),
+     'passwordConf': new FormControl(null, [Validators.required]),
+     'resultado': new FormControl(null, [Validators.required])
+    });
+
+    // Inicializamos los digitos para el captcha
+    this.actualizarNumeros();
+
+    // Recuperamos los parametros de la URL
+    this.idioma = this.state.routerState.snapshot.root.queryParams['idioma'];
+    this.id_link = this.state.routerState.snapshot.root.queryParams['link'];
+
+    // Me subscribo al dato para recuperar el servidor
+    this.subscriptionRestServer = this.dataStorageService.getRestServers().subscribe(
+      (resultado: boolean) => {
+        this.isServidorRest = resultado;
+        // Si KO --> muestro el error
+        if (!resultado) {
+          this.translate.get('Comun.ErrorPeticion', {server: 'Recuperar servidor'}).subscribe(
+            msg => {
+              this.errorMessageDescripcion = msg;
+            });
+        }
+      }
+    );
+
+    // Escucho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+
+    // Escuchamos la peticion al Servicio
+    this.subscriptionActualizarContrasenya = this.actualizarContrasenyaService.errorMessageDescripcionChanged.subscribe(
+      (error: string) => {
+        this.errorMessageDescripcion = error;
+        // Actualizamos con los numeros de la operacion para el captcha
+        this.actualizarNumeros();
+      });
+  }
+
+  private actualizarNumeros(): void {
+    this.numero1 = this.utilsAccesoService.actualizarNumero();
+    this.numero2 = this.utilsAccesoService.actualizarNumero();
+  }
+
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+
+    if (this.validar()) {
+      // LLamamos al servicio de recuperar contraseña
+      this.actualizarContrasenyaService.actualizarContrasenya(this.actualizarContrasenaForm.value.passwordNew, this.id_link, this.idioma );
+    }
+
+  }
+
+  private validar(): boolean {
+    let result = true;
+    // Comprobamos el resultado del captcha y si las contraseñas son iguales
+    if ( this.actualizarContrasenaForm.value.passwordNew !== this.actualizarContrasenaForm.value.passwordConf ||
+      this.actualizarContrasenaForm.value.resultado !== this.numero1 + this.numero2) {
+      // Actualizamos con los numeros de la operacion para el captcha
+      this.actualizarNumeros();
+      if (this.actualizarContrasenaForm.value.passwordNew !== this.actualizarContrasenaForm.value.passwordConf) {
+        // Las contraseñas no son iguales
+        this.translate.get('ActualizarContrasenyaComponent.ContrasenyaIncorrecta').subscribe(
+          mensaje => {
+            // Informamos el error de Resultado Incorrecto
+            this.errorMessageDescripcion = mensaje;
+          }
+        );
+        result = false;
+      } else if (this.actualizarContrasenaForm.value.resultado !== this.numero1 + this.numero2) {
+        // Resultado incorrecto del Captcha
+        this.translate.get('ActualizarContrasenyaComponent.ResultadoIncorrecto').subscribe(
+          mensaje => {
+            // Informamos el error de Resultado Incorrecto
+            this.errorMessageDescripcion = mensaje;
+          }
+        );
+        result = false;
+      }
+    }
+    // Habilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(false);
+    return result;
+  }
+
+  onToggleShow() {
+    // Muestro el password
+    this.showPassword = this.utilsButtonService.toggleShow(this.showPassword);
+  }
+
+  onToggleShowconf() {
+    // Muestro el password
+    this.showPasswordConfirmar = this.utilsButtonService.toggleShow(this.showPasswordConfirmar);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionRestServer.unsubscribe();
+    this.subscriptionActualizarContrasenya.unsubscribe();
+  }
+}

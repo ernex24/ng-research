@@ -1,0 +1,108 @@
+.carousel-control {
+  display: flex !important;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  display: block !important;
+}
+
+.carousel-indicators {
+  display: block !important;
+}
+
+.onboardingScreen{
+  display: flex !important;
+  position: absolute;
+  width: 100vw;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.52) !important;
+  z-index: 1000;
+  justify-content: space-around;
+}
+
+.onboarding{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.onboardingBg {
+  width: 90vw;
+  max-width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f4f4f4;
+  color: #ffffff;
+  background: linear-gradient(#3BC7CE, #087290);
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+}
+
+.onboardingFooter{
+  width: 90vw;
+  max-width: 600px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 0 0 10px 10px;
+  margin: 0 10px;
+}
+
+.onboardingBoton{
+  border-radius: 20px;
+  border: 1px solid #1AA5AC;
+  background-color: #FFFFFF;
+  color: #1AA5AC;
+  padding: 8px 20px;
+}
+
+.onboardingBoton:hover {
+  border-radius: 20px;
+  border: 1px solid #FFFFFF;
+  background-color: #1AA5AC;
+  color: #ffffff;
+  padding: 8px 20px;
+}
+
+@media (max-width: 767px) {
+
+    #onboarding {
+      display: none !important;
+    }
+
+}
+
+@media only screen and (max-device-width: 767px) {
+
+  #onboarding {
+    display: flex !important;
+  }
+  .item {
+    margin-right: 0px !important;
+  }
+
+  .onboardingBg {
+    width: 90vw;
+    max-width: 600px;
+    height: 70vh;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .onboardingFooter{
+    width: 90vw;
+    max-width: 600px;
+    height: 10vh;
+    padding: 30px;
+  }
+
+}

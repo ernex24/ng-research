@@ -1,0 +1,91 @@
+<div class="mainLogin">
+  <app-carrusel></app-carrusel>
+  <div class="containerLogIn">
+
+    <img class="logo" src="assets/img/imagenes_comunes/logo/gvc_logo.svg" alt="">
+
+    <form [formGroup]="recuperarContrasenaForm" class="loguser1" (ngSubmit)="onSubmit()">
+
+      <h3>
+        <span class="titulo">{{ 'RecuperarContrasenaComponent.RecuperarContrasena' | translate }}</span>
+      </h3>
+
+      <div class="input-group gvc-center">
+        <span class="input-group-addon gvc-icono-label">
+          <img src="assets/img/imagenes_comunes/formularios/ico_user.svg" alt="">
+        </span>
+        <input type="text"
+               class="form-control gvc-estilosInput"
+               formControlName="username"
+               id="username"
+               placeholder="{{ 'RecuperarContrasenaComponent.Usuario' | translate }}"
+               aria-label="Usuario"
+               aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="espacioAlerta gvc-center">
+        <span *ngIf="!recuperarContrasenaForm.get('username').valid && recuperarContrasenaForm.get('username').touched"
+              class="invalid">
+          <span *ngIf="recuperarContrasenaForm.get('username').errors['required']">
+            {{ 'RecuperarContrasenaComponent.UsuarioObligatoria' | translate }}
+          </span>
+        </span>
+      </div>
+
+      <span class="titulo-h4">{{ 'RecuperarContrasenaComponent.resultadoOperacion' | translate }}</span>
+
+      <div class="input-group  gvc-center gvc-margin-textoResultado">
+        <span class="input-group-addon gvc-icono-label gvc-resultadoOperacion"> {{numero1}} + {{numero2}} = </span>
+
+        <input type="number"
+               min="0"
+               class="form-control gvc-estilosInput"
+               formControlName=resultado
+               id="resultado"
+               placeholder="{{ 'RecuperarContrasenaComponent.Resultado' | translate }}"
+               aria-label="Username"
+               aria-describedby="basic-addon1"
+               required pattern="[0-9]{1,3}" >
+      </div>
+
+      <div class="espacioAlerta gvc-center">
+        <span *ngIf="!recuperarContrasenaForm.get('resultado').valid && recuperarContrasenaForm.get('resultado').touched"
+              class="invalid">
+          <span *ngIf="recuperarContrasenaForm.get('resultado').errors['required']">
+            {{ 'RecuperarContrasenaComponent.ResultadoObligatoria' | translate }}
+          </span>
+        </span>
+      </div>
+
+      <input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+				[disabled]="!recuperarContrasenaForm.valid || !isServidorRest || (submited$ | async)"
+				value="{{ 'RecuperarContrasenaComponent.Enviar' | translate }}">
+    </form>
+
+    <div class="menuLoginVolver">
+      <div class="d-flex justify-content-center">
+        <div>
+          <p><a routerLink='/login'>
+            {{ 'RecuperarContrasenaComponent.Volver' | translate }}
+          </a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div *ngIf="errorMessageDescripcion !== ''" class="alertas">
+      <img src="assets/img/imagenes_comunes/interfaz/ico_alerta_s.svg">
+      <p>{{ errorMessageDescripcion }}</p>
+    </div>
+
+</div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>{{mensaje}}</p>
+    <button type="button"
+            class="btn btn-default gvc-button"
+            (click)="confirm()">{{ 'RecuperarContrasenaComponent.Aceptar' | translate }}
+    </button>
+  </div>
+</ng-template>

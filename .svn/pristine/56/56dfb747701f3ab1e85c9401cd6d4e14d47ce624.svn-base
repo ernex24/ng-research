@@ -1,0 +1,93 @@
+import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {TranslateService} from '@ngx-translate/core';
+import {DataStorageService} from '../../shared/data-storage.service';
+import {LoginService} from './login.service';
+import {IAppConstants} from '../../app-constants.interface';
+import {APP_CONSTANTS} from '../../app-constants';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LoginTokenService} from './login-token.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html'
+})
+export class LoginComponent  implements OnInit, OnDestroy {
+
+  loginForm: FormGroup;
+  showPassword = false;
+  isServidorRest = false;
+  submited$: Observable<boolean>;
+  errorMessageDescripcion = '';
+  private subscriptionRestServer: Subscription;
+  private subscriptionLogin: Subscription;
+  mobile = false;
+
+  constructor(private translate: TranslateService,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    private dataStorageService: DataStorageService,
+    private loginService: LoginService,
+    private loginTokenService: LoginTokenService,
+    private utilsButtonService: UtilsButtonService,
+    private route: ActivatedRoute,
+    private router: Router) {}
+
+  ngOnInit() {
+    if (window.screen.width < 767) { // 768px portrait
+      this.mobile = true;
+    }
+
+
+    // Gestion del form
+    this.loginForm = new FormGroup({
+      'username': new FormControl(null, [Validators.required]),
+      'password': new FormControl(null, [Validators.required])
+    });
+    // Me subscribo al dato para recuperar el servidor
+    this.subscriptionRestServer = this.dataStorageService.getRestServers().subscribe(
+      (resultado: boolean) => {
+        this.isServidorRest = resultado;
+        // Si KO --> muestro el error
+        if (!resultado) {
+          this.translate.get('Comun.ErrorPeticion', {server: 'Recuperar servidor'}).subscribe(
+            msg => {
+              this.errorMessageDescripcion = msg;
+            });
+        }
+      }
+    );
+
+    // Escurcho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+    // Escuchamos los errores
+    this.subscriptionLogin = this.loginService.errorMessageDescripcion$.subscribe((error: string) =>  this.errorMessageDescripcion = error);
+    // Errores del login token
+    if (this.loginTokenService.errorMessageDescripcion != null) {
+      this.errorMessageDescripcion = this.loginTokenService.errorMessageDescripcion;
+      this.loginTokenService.errorMessageDescripcion = null;
+    }
+  }
+
+  onToggleShow() {
+    // Muestro el password
+    this.showPassword = this.utilsButtonService.toggleShow(this.showPassword);
+  }
+
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+    // LLamo al servicio de login
+    this.loginService.login(this.loginForm.value.username, this.loginForm.value.password);
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribir
+    this.subscriptionRestServer.unsubscribe();
+    this.subscriptionLogin.unsubscribe();
+  }
+}

@@ -1,0 +1,20 @@
+import { Component } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap';
+import {Router} from '@angular/router';
+
+@Component({
+  selector: 'app-modal-informacion',
+  templateUrl: './modal-informacion.component.html',
+})
+export class ModalInformacionComponent {
+  texto: string;
+
+  constructor(public bsModalRef: BsModalRef, private router: Router) {}
+
+  confirmar() {
+    this.bsModalRef.hide();
+    // Redirige al login
+    this.router.navigate(['login']);
+
+  }
+}

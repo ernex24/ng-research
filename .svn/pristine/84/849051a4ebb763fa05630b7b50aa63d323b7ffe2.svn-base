@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+@Component({
+  selector: 'app-terminos',
+  templateUrl: 'terminos.component.html',
+  styleUrls: ['../footer.component.css']
+})
+export class TerminosComponent {
+
+  constructor(public bsModalRef: BsModalRef) {}
+
+}

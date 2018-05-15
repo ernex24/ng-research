@@ -1,0 +1,94 @@
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 lista " id="grid-wrapper">
+
+      <ul class="listaPadre">
+        <li class="tituloLista">
+          <ul class="rowItem">
+            <li class="titulopdelalista"><h5>Titulo de la Lista de informes</h5></li>
+            <li class="verMasboton"><a><p>Ver Más</p></a></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star"  type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista">25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"> </li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+      </ul>
+
+
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 lista no-left-gutters">
+
+      <ul class="listaPadre">
+        <li class="tituloLista">
+          <ul class="rowItem">
+            <li class="titulopdelalista"><h5>Titulo de la Lista de informes</h5></li>
+            <li class="verMasboton"><a><p>Ver Más</p></a></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star"  type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista">25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"> </li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+</div>
+

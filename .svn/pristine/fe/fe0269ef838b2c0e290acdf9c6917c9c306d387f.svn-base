@@ -1,0 +1,81 @@
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { ValidarUsuarioService } from './validar-usuario.service';
+import { TranslateService } from '@ngx-translate/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-validar-usuario',
+  templateUrl: './validar-usuario.component.html',
+  styleUrls: ['./validar-usuario.component.css']
+})
+
+export class ValidarUsuarioComponent implements OnInit, OnDestroy {
+  validarUsuarioForm: FormGroup;
+  numero1: number;
+  numero2: number;
+  showPassword: boolean = false;
+  showPasswordConfirmar: boolean = false;
+  submited$: Observable<boolean>;
+  errorMessageDescripcion: string = '';
+  private subscriptionValidarUsuario: Subscription;
+  idioma: string;
+  id_link: string;
+
+  constructor(private translate: TranslateService,
+              private utilsButtonService: UtilsButtonService,
+              private utilsAccesoService: UtilsAccesoService,
+              private validarUsuarioService: ValidarUsuarioService,
+              private state: Router) { }
+
+  ngOnInit() {
+    // Gestion del form
+    this.validarUsuarioForm = new FormGroup({
+      'passwordNew': new FormControl(null, [Validators.required]),
+      'passwordConf': new FormControl(null, [Validators.required]),
+      'resultado': new FormControl(null, [Validators.required])
+    });
+
+    // Inicializamos los digitos para el captcha
+    this.numero1 = this.utilsAccesoService.actualizarNumero();
+    this.numero2 = this.utilsAccesoService.actualizarNumero();
+
+    // Recuperamos los parametros de la URL
+    this.idioma = this.state.routerState.snapshot.root.queryParams['idioma'];
+    this.id_link = this.state.routerState.snapshot.root.queryParams['link'];
+
+    // Escucho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+
+    // Escuchamos la peticion al Servicio
+    this.subscriptionValidarUsuario = this.validarUsuarioService.errorMessageDescripcionChanged.subscribe(
+      (error: string) => this.errorMessageDescripcion = error);
+  }
+
+  onToggleShow() {
+    // Muestro el password
+    this.showPassword = this.utilsButtonService.toggleShow(this.showPassword);
+  }
+
+   onToggleShowconf() {
+    // Muestro el password
+    this.showPasswordConfirmar = this.utilsButtonService.toggleShow(this.showPasswordConfirmar);
+  }
+
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+
+    // LLamamos al servicio de activar usuario
+    this.validarUsuarioService.getValidarUsuario(this);
+  }
+  ngOnDestroy(): void {
+    this.subscriptionValidarUsuario.unsubscribe();
+  }
+}

@@ -1,0 +1,87 @@
+
+<!-- Modal cambiar Contraseña-->
+  <div class="modal-header saldoheaderModal">
+    <h3>{{ 'MenuPerfil.CambiarContrasenya' | translate }}</h3>
+    <button type="button" class="close cerrarButton" (click)="bsModalRef.hide()"><span>&times;</span></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="cambiarContrasenyaForm" class="loguser1">
+      <ul class="listaModalesMenu">
+        <li>
+          <p>{{ 'MenuPerfil.TextoContrasenya' | translate }}</p>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+            </span>
+            <input type="{{showPassword ? 'text' : 'password'}}"
+                   class="form-control gvc-estilosInput-Passyfirma"
+                   formControlName="oldPassword" id="oldPassword"
+                   placeholder="{{ 'MenuPerfil.ContrasenyaActual' | translate }}"/>
+            <span class="input-group-btn">
+              <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow()">
+                <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+              </button>
+            </span>
+          </div>
+          <div class="espacioAlerta gvc-center">
+            <span *ngIf="!cambiarContrasenyaForm.get('oldPassword').valid && cambiarContrasenyaForm.get('oldPassword').touched" class="invalid">
+              <p *ngIf="cambiarContrasenyaForm.get('oldPassword').errors['required']"> Introduce tu contraseña actual</p>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+            </span>
+            <input type="{{showPassword2 ? 'text' : 'password'}}"
+                   class="form-control gvc-estilosInput-Passyfirma"
+                   formControlName="newPassword" id="newPassword"
+                   placeholder="{{ 'MenuPerfil.NuevaContrasenya' | translate }}"/>
+            <span class="input-group-btn">
+              <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow2()">
+                <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+              </button>
+            </span>
+          </div>
+          <div class="espacioAlerta gvc-center">
+            <span *ngIf="!cambiarContrasenyaForm.get('newPassword').valid && cambiarContrasenyaForm.get('newPassword').touched"
+                  class="invalid">
+              <p *ngIf="cambiarContrasenyaForm.get('newPassword').errors['required']">
+                   Introduce tu nueva contraseña
+              </p>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+				<span class="input-group-addon gvc-icono-label">
+          <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+				</span>
+            <input type="{{showPassword3 ? 'text' : 'password'}}"
+                   class="form-control gvc-estilosInput-Passyfirma"
+                   formControlName="confPassword" id="confPassword"
+                   placeholder="{{ 'MenuPerfil.ConfirmarContrasenya' | translate }}"/>
+            <span class="input-group-btn">
+            <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow3()">
+              <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+            </button>
+          </span>
+          </div>
+          <div class="espacioAlerta gvc-center">
+            <span *ngIf="!cambiarContrasenyaForm.get('confPassword').valid && cambiarContrasenyaForm.get('confPassword').touched"
+                  class="invalid">
+              <p *ngIf="cambiarContrasenyaForm.get('confPassword').errors['required']">
+                Confirma tu nueva contraseña</p></span>
+          </div>
+        </li>
+        <li>
+          <input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+                 [disabled]="!cambiarContrasenyaForm.valid"
+                 value="{{ 'MenuPerfil.EnviarContrasenya' | translate }}">
+        </li>
+      </ul>
+    </form>
+  </div>

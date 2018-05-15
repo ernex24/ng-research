@@ -1,0 +1,56 @@
+
+<!-- Modal cambiar email-->
+
+  <div class="modal-header saldoheaderModal">
+    <h3>{{ 'MenuPerfil.EmailCuenta' | translate }}</h3>
+    <button type="button" class="close cerrarButton" (click)="bsModalRef.hide()"> <span>&times;</span> </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="cambiarEmail" class="loguser1">
+      <ul class="listaModalesMenu">
+        <li><p>{{ 'MenuPerfil.TextoEmail' | translate }}<br>{{ 'MenuPerfil.Email' | translate }}<br>{{ email }}</p></li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/email.svg" alt="">
+            </span>
+            <input type="text"
+                   class="form-control gvc-estilosInput"
+                   formControlName="email" id="email"
+                   placeholder="{{ 'MenuPerfil.NuevoEmail' | translate }}"/>
+          </div>
+          <div class="espacioAlerta gvc-center">
+              <span *ngIf="!cambiarEmail.get('email').valid && cambiarEmail.get('email').touched"
+                    class="invalid">
+                <p *ngIf="cambiarEmail.get('email').errors['required']">
+                      Introduce tu nueva dirección de email</p>
+              </span>
+          </div>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/email.svg" alt="">
+            </span>
+            <input type="text"
+                   class="form-control gvc-estilosInput "
+                   formControlName="emailConf" id="emailConf"
+                   placeholder="{{ 'MenuPerfil.ConfirmarEmail' | translate }}"/>
+          </div>
+          <div class="espacioAlerta gvc-center">
+                <span *ngIf="!cambiarEmail.get('emailConf').valid && cambiarEmail.get('emailConf').touched" class="invalid">
+                  <p *ngIf="cambiarEmail.get('emailConf').errors['required']">
+                    Confirma tu nueva dirección de email
+                  </p>
+                </span>
+          </div>
+        </li>
+        <li>
+          <input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+                 [disabled]="!cambiarEmail.valid"
+                 value="{{ 'MenuPerfil.CambiarEmail' | translate }}">
+        </li>
+      </ul>
+    </form>
+  </div>

@@ -1,0 +1,120 @@
+import { APP_CONSTANTS } from '../../app-constants';
+import { IAppConstants } from '../../app-constants.interface';
+import { ModalService } from '../../core/modal/modal.service';
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { DESBLOQUEAR_USUARIO_CONSTANTS } from './desbloquear-usuario-constants';
+import { IDesbloquearUsuarioConstants } from './desbloquear-usuario-constants.interface';
+import { DesbloquearUsuarioComponent } from './desbloquear-usuario.component';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Subject } from 'rxjs/Subject';
+
+import * as CryptoJS from 'crypto-js';
+
+
+@Injectable()
+export class DesbloquearUsuarioService {
+  constructor(private httpClient: HttpClient,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    @Inject(DESBLOQUEAR_USUARIO_CONSTANTS) private constantsDesbloquearUsuario: IDesbloquearUsuarioConstants,
+    private translate: TranslateService,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService,
+    private dataStorageService: DataStorageService,
+    private modalService: ModalService,
+    private router: Router) {}
+
+    errorMessageDescripcionChanged = new Subject<string>();
+
+  getDesbloqueo(desbloquearUsuarioComponent: DesbloquearUsuarioComponent): void {
+    // Comprobamos el resultado del captcha
+   if (desbloquearUsuarioComponent.desbloquearUsuarioForm.value.resultado !==
+      desbloquearUsuarioComponent.numero1 + desbloquearUsuarioComponent.numero2) {
+      // Actualizamos con los numeros de la operacion para el captcha
+     desbloquearUsuarioComponent.numero1 = this.utilsAccesoService.actualizarNumero();
+     desbloquearUsuarioComponent.numero2 = this.utilsAccesoService.actualizarNumero();
+      // Resultado incorrecto del Captcha
+      this.translate.get('DesbloquearUsuarioComponent.ResultadoIncorrecto').subscribe(
+          mensaje => {
+            // Informamos el error de Resultado Incorrecto
+            this.errorMessageDescripcionChanged.next(mensaje);
+          }
+        );
+    } else {
+      // Captcha correcto llamamos al servicio de recuperar contraseña
+      this.errorMessageDescripcionChanged.next('');
+      this.desbloquearUsuario(desbloquearUsuarioComponent);
+    }
+    // Habilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(false);
+  }
+
+  private desbloquearUsuario(desbloquearUsuarioComponent: DesbloquearUsuarioComponent): void {
+    const key = CryptoJS.enc.Utf8.parse(this.constants.SECRET_PASSPHRASE);
+    const key2 = CryptoJS.enc.Utf8.parse(this.constants.KEY_HMAC_SHA1);
+    const iv = CryptoJS.enc.Base64.parse('');
+    const username = CryptoJS.AES.encrypt(desbloquearUsuarioComponent.desbloquearUsuarioForm.value.username, key, { iv : iv });
+    const idioma = this.translate.getBrowserLang() != null ? this.translate.getBrowserLang().toUpperCase() : this.constants.IDIOMA;
+
+    let estruc = idioma + this.constants.HMAC_SEPARATOR + username;
+    estruc = encodeURIComponent(estruc);
+    const hash = CryptoJS.HmacSHA1(estruc, key2).toString(CryptoJS.enc.Base64).replace(/[/]/g, '_');
+
+    const request = {
+      'ANA_Desbloquear_Usuario_Request': {
+        'token': hash,
+        'idioma': idioma,
+        'data_01': username.toString(),
+        'demo': false
+      }
+    };
+
+    const req = new HttpRequest(this.constants.HTTP_REQUEST, this.dataStorageService.ejecutarServicio() +
+                this.constantsDesbloquearUsuario.URL_DESBLOQUEAR_USUARIO, request, { reportProgress: true });
+    // Realizamos la llamada al servicio
+    this.httpClient.request(req).subscribe(
+      (evento: HttpEvent<any>) => {
+        switch (evento.type) {
+          case HttpEventType.Sent:
+            // Abrimos el modal de cargando mientras se esta enviando la petición
+            const titulo = this.translate.get('Modal.AccesoDesbloquearUsuario');
+            const imagen = this.translate.get('Modal.AccesoImagen');
+            const texto = this.translate.get('Modal.AccesoTexto');
+
+            this.modalService.openCargando(titulo, imagen, texto);
+            break;
+          case HttpEventType.Response:
+              // Cerramos el modal de validando cuando tengamos respuesta de la peticion
+              this.modalService.closeModal();
+              // Comprobamos el resultado de la peticion
+              this.dataStorageService.sesion = { ... evento.body.ANA_Desbloquear_Usuario_Response};
+              if (this.dataStorageService.sesion.status === this.constants.STATUS_OK) {
+                // Desbloqueo de usuario OK
+                this.errorMessageDescripcionChanged.next(this.dataStorageService.sesion.errorMessageDescripcion);
+                // Rediriger al login -> TODO mostrar mensaje de email....
+                this.router.navigate(['login']);
+              } else {
+                // Actualizamos con los numeros de la operacion para el captcha
+               desbloquearUsuarioComponent.numero1 = this.utilsAccesoService.actualizarNumero();
+               desbloquearUsuarioComponent.numero2 = this.utilsAccesoService.actualizarNumero();
+              }
+        }
+      },
+      (error: any) => {
+        // Cerramos el modal de validacion de usuario
+        this.modalService.closeModal();
+        // Habilitmos el boton
+        this.utilsButtonService.submitedButtonChanged.next(false);
+        // Recuperamos el mensaje de error generico
+        this.translate.get('Comun.ErrorPeticion', { server: this.constantsDesbloquearUsuario.URL_DESBLOQUEAR_USUARIO }).subscribe(
+              mensaje => {
+                // Informamos del error
+                this.errorMessageDescripcionChanged.next(mensaje);
+              });
+      });
+  }
+}

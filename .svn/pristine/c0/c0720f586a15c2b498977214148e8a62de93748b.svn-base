@@ -1,0 +1,12 @@
+<carousel class="carrusel">
+	<slide *ngFor="let carruselEl of carrusel">
+		<img
+			class="d-block img-fluid"
+			  [src]="carruselEl.imagePath"
+			alt="First slide">
+		<div class="carousel-caption d-none d-md-block gvc-carrusel-caption">
+			<h1>{{ carruselEl.titulo }}</h1>
+			<p class="copyCarrousel"></p>
+		</div>
+	</slide>
+</carousel>

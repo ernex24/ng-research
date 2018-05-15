@@ -1,0 +1,75 @@
+
+<div class="mainLogin">
+	<app-carrusel></app-carrusel>
+	<div class="containerLogIn">
+		<img class="logo" src="assets/img/imagenes_comunes/logo/gvc_logo.svg"
+			alt="">
+
+		<form [formGroup]="loginForm" class="loguser1" (ngSubmit)="onSubmit()">
+
+			<h3>
+				<span class="titulo">{{ 'LoginComponent.IniciarSesion' |
+					translate }}</span>
+			</h3>
+
+			<div class="input-group gvc-input-group">
+				<span class="input-group-addon gvc-icono-label"> <img
+					src="assets/img/imagenes_comunes/formularios/ico_user.svg" alt="">
+				</span> <input type="text" class="form-control gvc-estilosInput "
+					formControlName="username" id="username"
+					placeholder="{{ 'LoginComponent.Usuario' | translate }}"
+					aria-label="Usuario" aria-describedby="basic-addon1" />
+			</div>
+
+			<div class="espacioAlerta gvc-center">
+				<span
+					*ngIf="!loginForm.get('username').valid && loginForm.get('username').touched"
+					class="invalid"><p
+						*ngIf="loginForm.get('username').errors['required']">{{
+						'LoginComponent.UsuarioObligatoria' | translate }}</p> </span>
+			</div>
+
+			<div class="input-group gvc-input-group">
+				<span class="input-group-addon gvc-icono-label"> <img
+					src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+				</span> <input type="{{showPassword ? 'text' : 'password'}}"
+					class="form-control gvc-estilosInput-Passyfirma"
+					formControlName="password" id="input_password"
+					placeholder="{{ 'LoginComponent.Contrasena' | translate }}"
+					aria-label="Contraseña" aria-describedby="basic-addon1" /> <span
+					class="input-group-btn">
+					<button class="btn btn-secondary gvc-icono-ojo" type="button"
+						(click)="onToggleShow()">
+						<img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+					</button>
+				</span>
+			</div>
+
+			<div class="espacioAlerta gvc-center">
+				<span
+					*ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+					class="invalid">
+					<p *ngIf="loginForm.get('password').errors['required']">{{
+						'LoginComponent.PasswordObligatoria' | translate }}</p>
+				</span>
+
+			</div>
+
+			<input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+				[disabled]="!loginForm.valid || !isServidorRest || (submited$ | async)"
+				value="{{ 'LoginComponent.Acceder' | translate }}">
+		</form>
+
+		<ul class="menuLogin">
+			<li><a routerLink="/acceso/recuperar-contrasenya">{{
+					'LoginComponent.Olvidado_contrasena' | translate }}</a></li>
+			<li><a routerLink="/acceso/desbloquear-usuario">{{
+					'LoginComponent.Desbloquear_usuario' | translate }}</a></li>
+		</ul>
+	</div>
+
+	<div *ngIf="errorMessageDescripcion !== ''" class="alertas">
+			<p>{{ errorMessageDescripcion }}</p>
+		</div>
+
+</div>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15082.5 -16675.445 66.5 43.447">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="iconVideo" transform="translate(-15696.905 -17478.391)">
+    <path id="Path_1730" data-name="Path 1730" class="cls-1" d="M-9956.13-13173.5v20.395l11.786-6.986,6.927-4.1Z" transform="translate(10597.136 13987.97)"/>
+    <g id="Rectangle_856" data-name="Rectangle 856" class="cls-2" transform="translate(614.405 802.945)">
+      <rect class="cls-3" width="66.5" height="43.447" rx="10"/>
+      <rect class="cls-4" x="1" y="1" width="64.5" height="41.447" rx="9"/>
+    </g>
+  </g>
+</svg>

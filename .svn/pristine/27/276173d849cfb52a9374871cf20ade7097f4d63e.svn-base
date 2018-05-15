@@ -1,0 +1,31 @@
+<div>
+  <ul class="listaPadreCarrusel">
+    <li class="tituloLista">
+      <ul class="rowItem">
+        <li class="titulopdelalista"><h5>Nuestros Últimos Eventos</h5></li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+        <li class="caruselEventosContainer">
+          <carousel>
+            <slide *ngFor="let content of ultimosEventos">
+              <ul class="listaItemsCarrusel">
+                <li>
+                      <div class="eventosCard">
+                      <p class="eventosCard_tipo">{{ content.contenidoTipo }}</p>
+                      <p class="eventosCard_titulo">{{ content.tituloContenido }}</p>
+                      <p class="eventosCard_descripcion">{{ content.descripcionDelContenido }}</p>
+                        <p class="eventosCard_fecha">{{ content.fechaEvento }}</p>
+                      </div>
+                  <p class="eventosCard_icono"><img [src]="content.icono"></p>
+                  <img [src]="content.imagenFondo" alt="First slide" style="display: block; min-width: 100%;">
+                </li>
+              </ul>
+            </slide>
+          </carousel>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

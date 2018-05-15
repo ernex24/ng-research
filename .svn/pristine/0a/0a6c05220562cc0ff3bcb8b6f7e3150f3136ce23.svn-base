@@ -1,0 +1,16 @@
+import { ValidarUsuarioComponent } from './validar-usuario.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const validarUsuarioComponentRoutes: Routes = [
+  { path: '', component: ValidarUsuarioComponent}
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forChild(validarUsuarioComponentRoutes)
+  ],
+  exports: [RouterModule],
+  providers: [ ]
+})
+export class ValidarUsuarioRoutingModule { }

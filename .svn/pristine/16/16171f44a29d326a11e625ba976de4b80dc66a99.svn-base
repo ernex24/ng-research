@@ -1,0 +1,33 @@
+<script src="./home.component.ts"></script>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark colorBarra2">
+  <a class="filtrar-informes" ></a>
+  <button class="navbar-toggler" (click)="isCollapsed2 = !isCollapsed2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="navbar-collapse" id="navbarSupportedContent" [collapse]="!isCollapsed2" >
+    <ul class="navbar-nav menu-responsive1">
+      <li class="nav-item botonesNav" dropdown>
+        <button dropdownToggle type="button" class="filtrar"> {{ 'Navbar.Companyia' | translate }} </button>
+        <ul *dropdownMenu class="dropdown-menu gvc-dropdown-menu" role="menu">
+          <li *ngFor=" let item of listaEmpresas" role="menuitem"><a class="dropdown-item itemListaDrop">{{ item.descripcion }}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid marginTop15" >
+  <div class="row">
+    <div class="col" id='grid-wrapper'>
+      <ag-grid-angular style="width: 100%; height: 100%;"
+                       class="ag-fresh"
+                       [rowData]="rowData"
+                       [columnDefs]="columnDefs"
+                       [enableSorting]="true"
+                       [domLayout]="domLayout"
+                       [gridOptions]="gridOptions"
+                       [headerHeight]="40"
+                       (gridSizeChanged)="onGridSizeChanged($event)"
+                       (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>
+

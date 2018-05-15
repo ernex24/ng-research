@@ -1,0 +1,114 @@
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { DESBLOQUEAR_USUARIO_CONSTANTS } from './desbloquear-usuario-constants';
+import { IDesbloquearUsuarioConstants } from './desbloquear-usuario-constants.interface';
+import { DesbloquearUsuarioService } from './desbloquear-usuario.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/Subscription';
+import {DataStorageService} from '../../shared/data-storage.service';
+
+@Component({
+  selector: 'app-desbloquear-usuario',
+  templateUrl: './desbloquear-usuario.component.html'
+  })
+export class DesbloquearUsuarioComponent implements OnInit, OnDestroy {
+
+  desbloquearUsuarioForm: FormGroup;
+  numero1: number;
+  numero2: number;
+  submited$: Observable<boolean>;
+  isServidorRest: boolean = false;
+  errorMessageDescripcion: string = '';
+  private subscriptionDesbloquearUsuario: Subscription;
+  private subscriptionRestServer: Subscription;
+
+  constructor(private translate: TranslateService,
+    @Inject(DESBLOQUEAR_USUARIO_CONSTANTS) private constantsDesbloquearUsuario: IDesbloquearUsuarioConstants,
+    private dataStorageService: DataStorageService,
+    private desbloquearUsuarioService: DesbloquearUsuarioService,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService) { }
+
+  ngOnInit() {
+    // Gestion del form
+    this.desbloquearUsuarioForm = new FormGroup({
+      'username': new FormControl(null, [Validators.required]),
+      'resultado': new FormControl(null, [Validators.required])
+    });
+
+    // Me subscribo al dato para recuperar el servidor
+    this.subscriptionRestServer = this.dataStorageService.getRestServers().subscribe(
+      (resultado: boolean) => {
+        this.isServidorRest = resultado;
+        // Si KO --> muestro el error
+        if (!resultado){
+          this.translate.get('Comun.ErrorPeticion', {server: 'Recuperar servidor'}).subscribe(
+            msg => {
+              this.errorMessageDescripcion = msg;
+            });
+        }
+      }
+    );
+
+    // Escurcho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+
+    // Escuchamos la peticion al Servicio
+    this.subscriptionDesbloquearUsuario = this.desbloquearUsuarioService.errorMessageDescripcionChanged.subscribe(
+      (error: string) => {
+        this.errorMessageDescripcion = error;
+        // Actualizamos con los numeros de la operacion para el captcha
+        this.actualizarNumeros();
+      });
+
+    // Inicializamos los digitos para el captcha
+    this.actualizarNumeros();
+
+  }
+
+  private actualizarNumeros(): void{
+    this.numero1 = this.utilsAccesoService.actualizarNumero();
+    this.numero2 = this.utilsAccesoService.actualizarNumero();
+  }
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+
+    if(this.validar()) {
+      // LLamamos al servicio de recuperar contraseña
+      this.desbloquearUsuarioService.desbloquearUsuario(this.desbloquearUsuarioForm.value.username);
+    }
+  }
+
+  validar(): boolean {
+    let result: boolean = true;
+
+    // Comprobamos el resultado del captcha
+    if (this.desbloquearUsuarioForm.value.resultado !== this.numero1 + this.numero2) {
+      // Actualizamos con los numeros de la operacion para el captcha
+      this.actualizarNumeros();
+      // Resultado incorrecto del Captcha
+      this.translate.get('DesbloquearUsuarioComponent.ResultadoIncorrecto').subscribe(
+        mensaje => {
+          // Informamos el error de Resultado Incorrecto
+          this.errorMessageDescripcion = mensaje;
+        }
+      );
+      result = false
+    }
+    // Habilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(false);
+    return result;
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribo
+    this.subscriptionRestServer.unsubscribe();
+    this.subscriptionDesbloquearUsuario.unsubscribe();
+  }
+}

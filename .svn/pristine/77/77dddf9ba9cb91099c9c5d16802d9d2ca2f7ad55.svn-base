@@ -1,0 +1,216 @@
+
+<!-- Modal cambiar email-->
+<ng-template #email>
+  <div class="modal-header saldoheaderModal">
+    <h3>{{ 'MenuPerfil.EmailCuenta' | translate }}</h3>
+    <button type="button" class="close cerrarButton" (click)="modalRef.hide()"> <span>&times;</span> </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="cambiarEmail" class="loguser1">
+      <ul class="listaModalesMenu">
+        <li><p>{{ 'MenuPerfil.TextoEmail' | translate }}<br>{{ 'MenuPerfil.Email' | translate }}<br>{{ email }}</p></li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/email.svg" alt="">
+            </span>
+            <input type="text"
+                   class="form-control gvc-estilosInput"
+                   formControlName="email" id="email"
+                   placeholder="{{ 'MenuPerfil.NuevoEmail' | translate }}"/>
+            </div>
+            <div class="espacioAlerta gvc-center">
+              <span *ngIf="!cambiarEmail.get('email').valid && cambiarEmail.get('email').touched"
+                     class="invalid">
+                <p *ngIf="cambiarEmail.get('email').errors['required']">
+                      Introduce tu nueva dirección de email</p>
+              </span>
+          </div>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/email.svg" alt="">
+            </span>
+            <input type="text"
+                   class="form-control gvc-estilosInput "
+                   formControlName="emailConf" id="emailConf"
+                   placeholder="{{ 'MenuPerfil.ConfirmarEmail' | translate }}"/>
+            </div>
+              <div class="espacioAlerta gvc-center">
+                <span *ngIf="!cambiarEmail.get('emailConf').valid && cambiarEmail.get('emailConf').touched" class="invalid">
+                  <p *ngIf="cambiarEmail.get('emailConf').errors['required']">
+                    Confirma tu nueva dirección de email
+                  </p>
+                </span>
+              </div>
+        </li>
+        <li>
+            <input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+                   [disabled]="!cambiarEmail.valid"
+                   value="{{ 'MenuPerfil.CambiarEmail' | translate }}">
+        </li>
+      </ul>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Modal cambiar Contraseña-->
+<ng-template #contrasenya>
+  <div class="modal-header saldoheaderModal">
+    <h3>{{ 'MenuPerfil.CambiarContrasenya' | translate }}</h3>
+    <button type="button" class="close cerrarButton" (click)="modalRef.hide()"><span>&times;</span></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="cambiarContrasenyaForm" class="loguser1">
+      <ul class="listaModalesMenu">
+        <li>
+          <p>{{ 'MenuPerfil.TextoContrasenya' | translate }}</p>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+            </span>
+            <input type="{{showPassword ? 'text' : 'password'}}"
+                   class="form-control gvc-estilosInput-Passyfirma"
+                   formControlName="oldPassword" id="oldPassword"
+                   placeholder="{{ 'MenuPerfil.ContrasenyaActual' | translate }}"/>
+            <span class="input-group-btn">
+              <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow()">
+                <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+              </button>
+            </span>
+          </div>
+          <div class="espacioAlerta gvc-center">
+            <span *ngIf="!cambiarContrasenyaForm.get('oldPassword').valid && cambiarContrasenyaForm.get('oldPassword').touched" class="invalid">
+              <p *ngIf="cambiarContrasenyaForm.get('oldPassword').errors['required']"> Introduce tu contraseña actual</p>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="input-group gvc-input-group2">
+            <span class="input-group-addon gvc-icono-label">
+              <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+            </span>
+            <input type="{{showPassword2 ? 'text' : 'password'}}"
+                   class="form-control gvc-estilosInput-Passyfirma"
+                   formControlName="newPassword" id="newPassword"
+                   placeholder="{{ 'MenuPerfil.NuevaContrasenya' | translate }}"/>
+            <span class="input-group-btn">
+              <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow2()">
+                <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+              </button>
+            </span>
+          </div>
+          <div class="espacioAlerta gvc-center">
+            <span *ngIf="!cambiarContrasenyaForm.get('newPassword').valid && cambiarContrasenyaForm.get('newPassword').touched"
+            class="invalid">
+              <p *ngIf="cambiarContrasenyaForm.get('newPassword').errors['required']">
+                   Introduce tu nueva contraseña
+              </p>
+            </span>
+          </div>
+        </li>
+        <li>
+        <div class="input-group gvc-input-group2">
+				<span class="input-group-addon gvc-icono-label">
+          <img src="assets/img/imagenes_comunes/formularios/ico_password.svg">
+				</span>
+          <input type="{{showPassword3 ? 'text' : 'password'}}"
+                       class="form-control gvc-estilosInput-Passyfirma"
+                       formControlName="confPassword" id="confPassword"
+                       placeholder="{{ 'MenuPerfil.ConfirmarContrasenya' | translate }}"/>
+          <span class="input-group-btn">
+            <button class="btn btn-secondary gvc-icono-ojo" type="button" (click)="onToggleShow3()">
+              <img src="assets/img/imagenes_comunes/formularios/ico_ojo.svg">
+            </button>
+          </span>
+        </div>
+          <div class="espacioAlerta gvc-center">
+            <span *ngIf="!cambiarContrasenyaForm.get('confPassword').valid && cambiarContrasenyaForm.get('confPassword').touched"
+            class="invalid">
+              <p *ngIf="cambiarContrasenyaForm.get('confPassword').errors['required']">
+                Confirma tu nueva contraseña</p></span>
+          </div>
+        </li>
+        <li>
+          <input type="submit" class="btn btn-primary gvc-buttonBlue250px"
+               [disabled]="!cambiarContrasenyaForm.valid"
+               value="{{ 'MenuPerfil.EnviarContrasenya' | translate }}">
+        </li>
+      </ul>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Modal menu perfil -->
+<div [collapse]="isCollapsed3">
+  <div class="my-modal" (click)="isCollapsed3 = !isCollapsed3" >
+    <div class="row margin15">
+      <button type="button" class="close botonCerrar gvc-close" > <span aria-hidden="true">&times;</span> </button>
+      <div class="col-xl-12 col-lg-12 col-md-12 profileSeguridad">
+        <ul class="menuProfile">
+          <li><img src="assets/img/imagenes_comunes/interfaz/menuPerfil.svg" alt=""></li>
+          <li><span class="tituloMenuProfile">{{ 'MenuPerfil.Perfil' | translate }}</span></li>
+          <li class="menuProfileItem"><a (click)="cambiarMail(email)" >{{ 'MenuPerfil.EmailAsociado' | translate }}</a></li>
+          <li class="menuProfileItem"><a (click)="cambiarContrasenya(contrasenya)">{{ 'MenuPerfil.CambiarContrasenya' | translate }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Menu superior -->
+<nav class="navbar navbar-expand-lg navbar-dark colorBarra">
+  <a class="navbar-brand navTitle" [ngClass]="setNavClasses()"></a>
+  <button class="navbar-toggler"  (click)="isCollapsed = !isCollapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" >
+    <ul class="navbar-nav ml-auto listaMenuPerfil">
+        <li class="userHola" (click)="isCollapsed3 = !isCollapsed3">{{ 'Navbar.Hola' | translate }} </li>
+        <li class="userName" (click)="isCollapsed3 = !isCollapsed3">{{ nombre | titlecase }} </li>
+        <li class="companyName" (click)="isCollapsed3 = !isCollapsed3">{{ empresa | titlecase }} </li>
+        <li class="" (click)="isCollapsed3 = !isCollapsed3"> <img class="icon-menuNav" src="assets/img/imagenes_comunes/interfaz/ico-hPerfil.svg"> </li>
+        <li class="log-out" (click)="openModalSalir(template)"> <img class="icon-menuNav" src="assets/img/imagenes_comunes/interfaz/icoh-Logout.svg"></li>
+    </ul>
+
+    <!-- parte adjunta del menu superior para dispositivos moviles con el menu lateral -->
+    <ul class="navbar-nav ml-auto menuLateral2" >
+      <li class="nav-item active menuResponsive1 menu-1 ">
+        <a class="nav-link " routerLink="/home/informes" >{{ 'Sidebar.Menu-1' | translate }}</a>
+      </li>
+      <li class="nav-item  menu-2">
+        <a class="nav-link" routerLink="/home/recomendaciones" >{{ 'Sidebar.Menu-2' | translate }}</a>
+      </li>
+      <li class="nav-item menu-3">
+        <a class="nav-link" routerLink="/home/dividendos" >{{ 'Sidebar.Menu-3' | translate }}</a>
+      </li>
+      <li class="nav-item menu-4">
+        <a class="nav-link " >{{ 'Sidebar.Menu-4' | translate }}</a>
+      </li>
+      <li class="nav-item menu-5">
+        <a class="nav-link " routerLink="/home/favoritos" >{{ 'Sidebar.Menu-5' | translate }}</a>
+      </li>
+      <li class="nav-item redes">
+        <a ><span id="facebook"></span></a><a href="#" ><span id="instagram"></span></a><a href="#" ><span id="twitter"></span></a><a href="#" ><span id="youtube"></span></a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<!-- Modal Logout-->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>{{ 'MenuPerfil.Logout' | translate }}</p>
+    <button type="button" class="btn" (click)="decline()">{{ 'MenuPerfil.NoSalir' | translate }}</button>
+    <button type="button" class="btn btn-default gvc-button" (click)="confirm()">{{ 'MenuPerfil.SalirDe' | translate }}</button>
+  </div>
+</ng-template>
+
+
+
+
+
+

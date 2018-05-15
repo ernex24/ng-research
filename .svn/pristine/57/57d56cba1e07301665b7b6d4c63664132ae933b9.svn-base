@@ -1,0 +1,79 @@
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { ActualizarContrasenyaService } from './actualizar-contrasenya.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-actualizar-contrasenya',
+  templateUrl: './actualizar-contrasenya.component.html',
+})
+export class ActualizarContrasenyaComponent implements OnInit, OnDestroy {
+  actualizarContrasenaForm: FormGroup;
+  numero1: number;
+  numero2: number;
+  showPassword: boolean = false;
+  showPasswordConfirmar: boolean = false;
+  submited$: Observable<boolean>;
+  errorMessageDescripcion: any = '';
+  private subscriptionActualizarContrasenya: Subscription;
+  idioma: string;
+  id_link: string;
+
+  constructor(private translate: TranslateService,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService,
+    private actualizarContrasenyaService: ActualizarContrasenyaService,
+    private state: Router) { }
+
+  ngOnInit() {
+     // Gestion del form
+     this.actualizarContrasenaForm = new FormGroup({
+     'passwordNew': new FormControl(null, [Validators.required]),
+     'passwordConf': new FormControl(null, [Validators.required]),
+     'resultado': new FormControl(null, [Validators.required])
+    });
+
+    // Inicializamos los digitos para el captcha
+    this.numero1 = this.utilsAccesoService.actualizarNumero();
+    this.numero2 = this.utilsAccesoService.actualizarNumero();
+
+    // Recuperamos los parametros de la URL
+    this.idioma = this.state.routerState.snapshot.root.queryParams['idioma'];
+    this.id_link = this.state.routerState.snapshot.root.queryParams['link'];
+
+    // Escucho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+
+    // Escuchamos la peticion al Servicio
+    this.subscriptionActualizarContrasenya = this.actualizarContrasenyaService.errorMessageDescripcionChanged.subscribe(
+      (error: string) => this.errorMessageDescripcion = error);
+  }
+
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+
+    // LLamamos al servicio de recuperar contraseña
+    this.actualizarContrasenyaService.getNuevaContrasenya(this);
+  }
+
+  onToggleShow() {
+    // Muestro el password
+    this.showPassword = this.utilsButtonService.toggleShow(this.showPassword);
+  }
+
+  onToggleShowconf() {
+    // Muestro el password
+    this.showPasswordConfirmar = this.utilsButtonService.toggleShow(this.showPasswordConfirmar);
+  }
+  ngOnDestroy(): void {
+    this.subscriptionActualizarContrasenya.unsubscribe();
+  }
+}

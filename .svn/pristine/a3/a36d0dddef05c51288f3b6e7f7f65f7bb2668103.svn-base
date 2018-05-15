@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import {InfoNavBarService} from '../../informes/info-navbar/info-navbar.service';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  providers: [ InfoNavBarService ]
+})
+export class NavbarComponent implements OnInit {
+
+  listaEmpresas = [];
+  listaSectores = [];
+  listaInformes = [];
+
+  constructor(servicio: InfoNavBarService) {
+    this.listaEmpresas = servicio.getEmpresas();
+    this.listaSectores = servicio.getSectores();
+    this.listaInformes = servicio.getInformes();
+  }
+
+  ngOnInit() {
+  }
+
+}

@@ -1,0 +1,320 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 lista" id="grid-wrapper">
+
+      <div>
+      <ul class="listaPadre">
+        <li class="tituloLista">
+          <ul class="rowItem">
+            <li class="titulopdelalista"><h5>Titulo de la Lista de informes</h5></li>
+            <li class="verMasboton"><a><p>Ver Más</p></a></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star"  type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista">25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"> </li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+
+      <div  >
+        <ul class="listaPadre">
+          <li class="tituloLista">
+            <ul class="rowItem">
+              <li class="titulopdelalista"><h5>Noticias</h5></li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="columnItem">
+              <li class="seccionNoticia">Sección de noticias</li>
+              <li class="tituloNoticia"><h5>Titulo de Noticias</h5></li>
+              <li class="fechaNoticia">25.01.2018</li>
+              <li class="contenidoNoticia">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</li>
+            </ul>
+          </li>
+
+          <li class="itemLista">
+            <ul class="columnItem">
+              <li class="seccionNoticia">Sección de noticias</li>
+              <li class="tituloNoticia"><h5>Titulo de Noticias</h5></li>
+              <li class="fechaNoticia">25.01.2018</li>
+              <li class="contenidoNoticia">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div >
+        <ul class="listaPadreCarrusel">
+          <li class="tituloLista">
+            <ul class="rowItem">
+              <li class="titulopdelalista"><h5>Próximos Eventos</h5></li>
+            </ul>
+          </li>
+          <li class="">
+            <ul class="">
+              <li class="caruselEventosContainer">
+                <carousel>
+                  <slide>
+                    <ul class="listaItemsCarrusel">
+                      <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Perspectivas financieras 2018</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                        <button class="eventosCard_boton">Suscríbete</button>
+                        <div class="eventosCard_fondo"></div>
+                      </li>
+                      <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Análisis NASDAQ</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                        <button class="eventosCard_boton">Suscríbete</button>
+                        <div class="eventosCard_fondo"></div>
+                      </li>
+                    </ul>
+                  </slide>
+                  <slide>
+                    <ul class="listaItemsCarrusel">
+                      <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Análisis IBEX35</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                        <button class="eventosCard_boton">Suscríbete</button>
+                        <div class="eventosCard_fondo"></div>
+                      </li>
+                      <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Invitado Especial</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                        <button class="eventosCard_boton">Suscríbete</button>
+                        <div class="eventosCard_fondo"></div>
+                      </li>
+                    </ul>
+                  </slide>
+                </carousel>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 lista no-left-gutters">
+
+      <div>
+      <ul class="listaPadre">
+        <li class="tituloLista">
+          <ul class="rowItem">
+            <li class="titulopdelalista"><h5>Titulo de la Lista de informes</h5></li>
+
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="rowItem">
+            <li class="estrellainput"><input class="star" type="checkbox"></li>
+            <li class="titulodeImforme">Titulo de informe</li>
+            <li class="fechaLista" >25 de enero de 2018</li>
+            <li><img class="icon-lista" src="assets/img/imagenes_comunes/interfaz/pdf.svg"></li>
+            <li><input type="checkbox"></li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+
+      <div >
+      <ul class="listaPadre">
+        <li class="tituloLista">
+          <ul class="rowItem">
+            <li class="titulopdelalista"><h5>Blog</h5></li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="columnItem">
+            <li class="seccionNoticia">Sección del Blog</li>
+            <li class="tituloNoticia"><h5>Titulo de Articulo del blog</h5></li>
+            <li class="fechaNoticia">25.01.2018 Nombre Cargo y Empresa del creador del articulo </li>
+            <li class="contenidoNoticia">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</li>
+          </ul>
+        </li>
+
+        <li class="itemLista">
+          <ul class="columnItem">
+            <li class="seccionNoticia">Sección del Blog</li>
+            <li class="tituloNoticia"><h5>Titulo de Articulo del blog</h5></li>
+            <li class="fechaNoticia">25.01.2018 Nombre Cargo y Empresa del creador del articulo </li>
+            <li class="contenidoNoticia">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+      <div >
+        <ul class="listaPadreCarrusel">
+          <li class="tituloLista">
+            <ul class="rowItem">
+              <li class="titulopdelalista"><h5>Nuestros Últimos Eventos</h5></li>
+            </ul>
+          </li>
+          <li class="">
+            <ul class="">
+              <li class="caruselEventosContainer">
+              <carousel>
+                <slide>
+
+                  <ul class="listaItemsCarrusel">
+                    <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Audio</p>
+                      <p class="eventosCard_titulo">Titulo del audio</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del audio que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                      <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconAudio.svg"></p>
+                      <img src="assets/img/imagenes_comunes/interfaz/audio-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                    </li>
+                    <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Video</p>
+                      <p class="eventosCard_titulo">Titulo del video</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del audio que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                      <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconVideo.svg"></p>
+                      <img src="assets/img/imagenes_comunes/interfaz/video-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                    </li>
+                  </ul>
+
+                </slide>
+                <slide>
+                  <ul class="listaItemsCarrusel">
+                    <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Video</p>
+                      <p class="eventosCard_titulo">Titulo del video</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del video que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                      <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconVideo.svg"></p>
+                      <img src="assets/img/imagenes_comunes/interfaz/video-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                    </li>
+                    <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Audio</p>
+                      <p class="eventosCard_titulo">Titulo del audio</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del audio que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                      <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconAudio.svg"></p>
+                      <img src="assets/img/imagenes_comunes/interfaz/audio-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                    </li>
+                  </ul>
+                </slide>
+              </carousel>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+

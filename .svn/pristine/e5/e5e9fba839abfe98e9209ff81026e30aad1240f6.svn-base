@@ -1,0 +1,20 @@
+import { LoginGuard } from './acceso/login/login.guard';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'acceso', loadChildren: './acceso/acceso.module#AccesoModule' },
+  { path: 'home', loadChildren: './home/home.module#HomeModule',  canActivateChild: [LoginGuard]  },
+  { path: ' ', redirectTo: '/acceso/login' },
+  { path: '**', redirectTo: '/acceso/login' },
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(appRoutes, {useHash: true, preloadingStrategy: PreloadAllModules})
+  ],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+}

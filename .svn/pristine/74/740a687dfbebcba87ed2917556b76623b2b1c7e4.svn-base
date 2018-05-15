@@ -1,0 +1,5 @@
+<script src="../home.component.ts"></script>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark gvc-barra ">
+        <div class="DatosCierre"> Datos Cierre 19/02/2018 </div>
+  <div class=""> <button class="botonDescarga"> Descargar Informe </button> </div>
+</nav>

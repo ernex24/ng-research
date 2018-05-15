@@ -1,0 +1,45 @@
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UtilsButtonService} from '../../../core/utils-button/utils-button.service';
+import { BsModalRef } from 'ngx-bootstrap';
+import {BsModalService} from 'ngx-bootstrap/modal';
+
+@Component({
+  selector: 'app-cambiar-contrasenya',
+  templateUrl: './cambiar-contrasenya.component.html',
+  styleUrls: ['./cambiar-contrasenya.component.css']
+})
+export class CambiarContrasenyaComponent implements OnInit {
+
+  cambiarContrasenyaForm: FormGroup;
+
+  showPassword: boolean = false;
+  showPassword2: boolean = false;
+  showPassword3: boolean = false;
+
+  constructor( private utilsButtonService: UtilsButtonService, private modalService: BsModalService, public bsModalRef: BsModalRef ) { }
+
+  ngOnInit() {
+    this.cambiarContrasenyaForm = new FormGroup({
+      oldPassword: new FormControl(null, [Validators.required]),
+      newPassword: new FormControl(null, [Validators.required]),
+      confPassword: new FormControl(null, [Validators.required])
+    });
+  }
+
+  onToggleShow() {
+    // Muestro el password
+    this.showPassword = this.utilsButtonService.toggleShow(this.showPassword);
+  }
+
+  onToggleShow2() {
+    // Muestro el password
+    this.showPassword2 = this.utilsButtonService.toggleShow(this.showPassword2);
+  }
+
+  onToggleShow3() {
+    // Muestro el password
+    this.showPassword3 = this.utilsButtonService.toggleShow(this.showPassword3);
+  }
+
+}

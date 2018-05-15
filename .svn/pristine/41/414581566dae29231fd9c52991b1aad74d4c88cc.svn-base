@@ -1,0 +1,33 @@
+import {Inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {TranslateService} from '@ngx-translate/core';
+
+import {DataStorageService} from '../../shared/data-storage.service';
+import {APP_CONSTANTS} from '../../app-constants';
+import {IAppConstants} from '../../app-constants.interface';
+import {LOGIN_CONSTANTS} from './login-constants';
+import {ILoginConstants} from './login-constants.interface';
+
+@Injectable()
+export class LoginTokenService {
+  errorMessageDescripcion: string = null;
+
+  constructor(private httpClient: HttpClient,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    @Inject(LOGIN_CONSTANTS) private constantsLogin: ILoginConstants,
+    private dataStorageService: DataStorageService,
+    private translate: TranslateService,
+    ) { }
+
+  loginToken(id: string, token: string) {
+    const request: any = {
+      'ANA_LoginToken_Request': {
+        'data_00': id,
+        'data_01': token,
+        'idioma': this.translate.getBrowserLang() != null ? this.translate.getBrowserLang().toUpperCase() : this.constants.IDIOMA,
+      }
+    };
+     return this.httpClient.post(this.dataStorageService.ejecutarServicio()+ this.constantsLogin.URL_LOGIN_TOKEN, request);
+  }
+
+}

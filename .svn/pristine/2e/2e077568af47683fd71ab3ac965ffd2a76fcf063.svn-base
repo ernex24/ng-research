@@ -1,0 +1,28 @@
+<div class="bg-gris" id="background"><!--Fondo-->
+  <div id="wrapper"> <!-- Contenedor general -->
+
+    <div id="sidebar-wrapperG" > <!-- Contenedor barra menu Lateral -->
+      <app-sidebar></app-sidebar>
+    </div>
+    <!-- Contenedor barra menu superior -->
+    <div id="page-content-wrapper">
+      <div class="page-content">
+        <div class="container-fluid no-gutters">
+          <div class="row">
+            <div class="col-md-12 no-gutters">
+              <div class="container-fluid no-gutters">
+                <app-navbar></app-navbar>
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenedor Pagina de contenido -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,28 @@
+<div [collapse]="isCollapsed5" >
+<div class="onboardingScreen" id="onboarding">
+  <div class="onboarding">
+    <div class="onBoardingCarousel">
+      <carousel>
+        <slide>
+          <div class="onboardingBg"><p>Paso 1 <br> Esto solo se ve <br> Si no tienes la cookie. </p> </div>
+        </slide>
+        <slide>
+          <div class="onboardingBg"> <p>Paso 2</p> </div>
+        </slide>
+        <slide>
+          <div class="onboardingBg"><p>Paso 3</p></div>
+        </slide>
+      </carousel>
+    </div>
+    <div class="onboardingFooter">
+      <button class="onboardingBoton" (click)="isCollapsed5 = !isCollapsed5">Iniciar Sesión</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+

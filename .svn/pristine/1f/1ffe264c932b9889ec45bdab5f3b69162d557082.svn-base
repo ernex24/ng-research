@@ -1,0 +1,63 @@
+import { environment } from '../../environments/environment';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { DOCUMENT } from '@angular/platform-browser';
+
+import 'rxjs/add/operator/map';
+
+import { APP_CONSTANTS } from '../app-constants';
+import { IAppConstants } from '../app-constants.interface';
+import { SesionModel } from './sesion/sesion.model';
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+@Injectable()
+export class DataStorageService {
+  restServer$ = new BehaviorSubject<string>('');
+  sesion: SesionModel;
+
+  constructor(private httpClient: HttpClient,
+    @Inject(APP_CONSTANTS) private contants: IAppConstants,
+    @Inject(DOCUMENT) document: any) { }
+
+  getRestServers() {
+    let hostInfoEnvironment: string = '';
+
+    if (!environment.production) {
+      // Estamos en el servidor de integración.
+      hostInfoEnvironment = this.contants.HOST_INTEGRACION;
+    }
+    // Realizo la petición para recuperar el servicio rest.
+    this.httpClient.get(hostInfoEnvironment + this.contants.URL_SERVICIOS_REST, {
+      observe: 'body',
+      responseType: 'json'
+    })
+      .map((res: any) => {
+        // Retorno el servidor rest
+        return res.marshallingView_SER_InfoEnvironment.value;
+      }).subscribe(
+      // Si OK --> Retorno el servidor
+      (servidor) => {
+        this.restServer$.next(servidor);
+      },
+      (err) => {
+        // SI KO --> Retorno -1
+        this.restServer$.next('-1');
+      }
+      );
+  }
+
+  /**
+   * Ejecutamos el servicio en el Servidor.
+   */
+  ejecutarServicio(): string {
+        return this.restServer$.value;
+  }
+
+  /**
+   * Ejecutamos el servicio en nuestro Local.
+   */
+  ejecutarServicioLocal(): string {
+      return this.contants.HOST_LOCAL;
+  }
+}

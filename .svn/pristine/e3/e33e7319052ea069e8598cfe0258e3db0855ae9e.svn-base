@@ -1,0 +1,8 @@
+export class GenericModel {
+
+  status: string;
+  errorMessageCode: string;
+  errorMessageDescripcion: string;
+
+  constructor() { }
+}

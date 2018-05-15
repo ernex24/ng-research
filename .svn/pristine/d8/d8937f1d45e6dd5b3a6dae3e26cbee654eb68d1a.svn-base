@@ -1,0 +1,63 @@
+import {Component, ElementRef, HostListener, AfterViewInit } from '@angular/core';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { InfoNavBarService } from '../../shared/info-navbar.service';
+import { BsDropdownModule } from 'ngx-bootstrap';
+
+import 'rxjs/add/observable/of';
+
+@Component({
+  selector: 'app-informes',
+  templateUrl: './informes.component.html',
+  styleUrls: ['./informes.component.css'],
+  providers: [ InfoNavBarService, { provide: CarouselConfig, useValue: { interval: 0, noPause: true, showIndicators: true } }
+  ],
+})
+export class InformesComponent {
+
+  private wasInside: boolean = true;
+  isCollapsed2: boolean = false;
+
+
+  // Calendario
+  minDate = new Date(2017, 5, 10);
+  maxDate = new Date(2018, 9, 15);
+  bsValue: Date = new Date();
+  bsRangeValue: any = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
+  listaEmpresas = []
+  listaSectores = []
+  listaInformes = []
+  customSelected: string;
+
+  constructor(servicio: InfoNavBarService, private elementRef: ElementRef) {
+    this.listaEmpresas = servicio.getEmpresas();
+    this.listaSectores = servicio.getSectores();
+    this.listaInformes = servicio.getInformes();
+  }
+
+  /*
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.querySelector('nav')
+      .addEventListener('click', this.onClick.bind(this));
+  }
+
+  onClick(event) {
+    console.log(event);
+  } */
+
+
+  @HostListener ('click')
+  clickInside() {
+    this.wasInside = true;
+  }
+
+  @HostListener ('document:click')
+  clickout() {
+    if (!this.wasInside) {
+      if(!this.isCollapsed2) {
+        this.isCollapsed2 = true;
+      }
+    }
+    this.wasInside = false;
+  }
+
+}

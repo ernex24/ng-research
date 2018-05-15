@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14898.062 -16639.719 18.261 67.457">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+      }
+    </style>
+  </defs>
+  <path id="carrouselArrow" class="cls-1" d="M-9397.777-13788.889l17.249,31.667-17.249,35.333" transform="translate(-24278.027 -30361.389) rotate(180)"/>
+</svg>

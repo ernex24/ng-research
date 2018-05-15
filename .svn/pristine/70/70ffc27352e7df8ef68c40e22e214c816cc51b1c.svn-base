@@ -1,0 +1,130 @@
+
+
+.titulopdelalista{
+  line-height: 1;
+}
+
+.rowItem{
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.caruselEventosContainer{
+  margin: 0 auto;
+  height: auto;
+  padding: 10px;
+}
+
+.listaPadreCarrusel{
+  padding: 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.listaItemsCarrusel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.listaItemsCarrusel li {
+  padding: 10px 10px;
+}
+
+.eventosCard{
+  width: 240px;
+  position: absolute;
+  padding: 10px 10px;
+}
+.eventosCard_tipo{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-size: 10px;
+}
+.eventosCard_titulo{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #FFFFFF;
+
+}
+.eventosCard_descripcion{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: #FFFFFF;
+  width: 250px;
+}
+
+.eventosCard_fecha{
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  width: 200px;
+  margin-top: 10px;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.eventosCard_icono{
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 4px;
+  margin-left: 196px;
+}
+
+.eventosCard_img{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.eventosCard_fondo {
+  background-color: #1AA5AC;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: block;
+  width: 245px;
+  height: 284px;
+  background: linear-gradient(135deg, #41cbd2 0%, #109ba2 100%);
+}
+
+.eventosCard_direccion{
+  font-size: 12px;
+  color: #126168;
+}
+
+.eventosCard_boton{
+  position: fixed;
+  border: 2px solid #ffffff;
+  width: 224px;
+  margin: 2px 10px;
+  padding: 6px;
+  color: #ffffff;
+  background-color: rgba( 0, 0, 0, 0);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 14px;
+  bottom: 20px;
+}
+
+.eventosCard_boton:hover{
+  color: #1aa5ac;
+  background-color: #ffffff;
+}
+
+.eventosCard_boton:active{
+  color: #ffffff;
+  background-color: rgba( 0, 0, 0, 0);
+}
+
+.eventosCard img{
+  min-width: 100%;
+}
+
+

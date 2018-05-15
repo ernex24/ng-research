@@ -1,0 +1,344 @@
+.bg {
+  overflow-y: overlay;
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../../assets/img/imagenes_comunes/interfaz/fondo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* ==========================================================================
+    Log IN
+   ========================================================================== */
+
+/* Container principal de modulo de inicio de sesión*/
+
+.mainLogin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 8rem;
+}
+
+/* Container del Log In con carrusel*/
+
+.containerLogIn {
+  padding: 1.6vw 5vw 1.6vw 5vw;
+  height: 436px;
+  border-radius: 0 0.625em 0.625em 0;
+  background-color: #FFFFFF;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1),
+  0 15px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: block;
+  padding: 0 0 1.875em 0;
+  margin: 0 auto;
+  max-width: 273px;
+  max-height: 91px;
+  width: 100%;
+  height: auto;
+}
+
+.titulo {
+  display: block;
+  margin: 0;
+  padding: 0 0 1.875em 0;
+  color: #666666;
+}
+
+.gvc-input-group {
+  position: relative;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: stretch;
+  width: 100%;
+}
+
+/* Fondo general del log in */
+
+.menuLoginVolver {
+  margin: 30px 0 0 0;
+}
+
+.menuLoginVolver a {
+  color: #666666 !important;
+}
+
+.menuLoginVolver a:hover {
+  color: #41CBD2;
+}
+
+.menuLogin {
+  margin: 22px 0 0 0;
+  text-align: center;
+}
+
+.menuLogin li {
+  padding-bottom: 10px;
+}
+
+.menuLogin a {
+  color: #666666 !important;
+}
+
+.menuLogin a:hover {
+  color: #41CBD2;
+}
+
+/* Container del Log In Completo Grande sin carrusel*/
+
+.containerLogInCompleto {
+  width: 763px;
+  height: 473px;
+  padding: 30px 97px 30px 97px;
+  border-radius: 0.625em 0.625em 0.625em 0.625em;
+  background-color: #FFFFFF;
+}
+
+/* Container del Log In Completo Pequeño sin carrusel*/
+
+.containerLogInCompletoPequeno {
+  width: 444px;
+  height: 473px;
+  padding: 30px 97px 30px 97px;
+  border-radius: 0.625em 0.625em 0.625em 0.625em;
+  background-color: #FFFFFF;
+}
+
+/*Contenedor del  formulario*/
+
+.contformulario {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.login {
+  width: 250px;
+}
+
+.loginGrande {
+  width: 100%;
+  padding: 0 1.875em;
+}
+
+/*Contenedor de formulario */
+
+.loguser1 {
+  text-align: center;
+}
+
+/* estilos del espacio para el resultado de la operación de la pregunta de seguridad */
+
+.gvc-resultadoOperacion {
+  height: 40px;
+  width: 80px;
+  color: #666666;
+  background-color: #E8EAED;
+  border: 1px solid #E8EAED;
+  border-radius: 5px 0 0 5px !important;
+  padding-top: 7px;
+}
+
+.gvc-buttonBlue250px {
+  width: 100%;
+  max-width: 250px;
+  padding: .5rem .75rem;
+  border: 0;
+  color: #FFFFFF;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  background: #41cbd2;
+  background: linear-gradient(135deg, #41cbd2 0%, #109ba2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41cbd2', endColorstr='#109ba2', GradientType=1);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.gvc-buttonBlue250px:hover {
+  background: #109ba2;
+  background: linear-gradient(135deg, #109ba2 0%, #41cbd2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#109ba2', endColorstr='#41cbd2', GradientType=1);
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.gvc-buttonBlue250px:focus {
+  border: 0;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.gvc-buttonBlue250px:active {
+  border: 0;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+:disabled {
+  max-width: 250px;
+  background: #e2e2e2 !important;
+  color: #6d6d6d;
+  padding: .5rem .75rem;
+  border: 0;
+  text-align: center;
+  cursor: initial;
+  opacity: .30;
+}
+
+/* ==========================================================================
+    Alertas Log in
+   ========================================================================== */
+
+.espacioAlerta {
+  height: 30px;
+}
+
+.invalid {
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 5px 0 0 0;
+  color: orange;
+  text-align: right;
+  font-weight: 800;
+  width: 100%;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid orange;
+}
+
+.alertas {
+  display: block;
+  position: absolute;
+  width: auto;
+  min-width: 220px;
+  margin: 460px 0 20px 0;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #ff6600;
+  padding: 3px 0 10px 10px;
+  border-radius: 10px;
+  float: right;
+  opacity: 0.9;
+  -webkit-transition: all 2s;
+  transition: all 2s;
+
+}
+
+.alertas img {
+  width: 20px;
+  float: left;
+  margin: 10px 15px 0 3px;
+}
+
+.alertas p {
+  float: left;
+  margin: 8px 15px 0 0;
+}
+
+.alertas p:before {
+  width: 20px;
+  height: 20px;
+ /* content: url("../../assets/img/imagenes_comunes/interfaz/ico_alerta_s.svg"); */
+
+}
+
+/* Cambio de margen superior contenedor login */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .mainLogin {
+    margin-top: 3rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .mainLogin {
+    margin-top: 3rem;
+  }
+}
+
+/* Desaparece el Login grande con carrusel  */
+
+@media (max-width: 767px) {
+  .mainLogin {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+    Version Mobile de la web
+   ========================================================================== */
+@media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
+
+  .logo {
+    padding: 15px 0 20px 0;
+  }
+
+}
+
+@media only screen and (max-device-width: 767px) {
+
+ .mainLogin {
+   display: block;
+   margin-top: 15px;
+ }
+
+ .containerLogIn {
+   border-radius: 10px 10px 10px 10px;
+   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1),
+   0 15px 12px rgba(0, 0, 0, 0.1);
+
+ }
+
+ app-carrusel {
+   display: block;
+ }
+
+ .logo {
+   margin: 13px auto;
+   max-width: 250px;
+   padding: 0 0 5px 0;
+ }
+
+  .alertas {
+        position: relative;
+        margin: 8px auto;
+        width: 100%;
+        min-width: 1px;
+  }
+}
+
+@media only screen and (max-device-width: 576px) {
+
+  .mainLogin {
+    display: block;
+    margin-top: 15px;
+
+  }
+
+}
+
+
+

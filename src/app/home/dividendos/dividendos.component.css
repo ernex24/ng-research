@@ -1,0 +1,551 @@
+/* ==========================================================================
+    $NAVBAR INFORMES
+   ========================================================================== */
+
+.colorBarra2{
+  color: #FFFFFF !important;
+  background: #41cbd2;
+  background: linear-gradient(135deg, #41cbd2 0%, #109ba2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41cbd2', endColorstr='#109ba2', GradientType=1);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1.2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+.icon-menu{
+  width: 25px;
+}
+
+.navbar-nav2 {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.filtrar {
+  cursor: pointer;
+  text-align: center;
+  height: 50px;
+  background-color: rgba(255, 250, 250, 0);
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-right: 1px solid #0C8C92;
+  color: #fff;
+  padding: 0 15px 0 15px;
+  width: 180px;
+  background-repeat: no-repeat;
+  background-position: 4px 8px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  font-size: 16px;
+}
+
+.botonDescarga{
+  background-color: #ffffff75;
+  margin: 7px 10px;
+  padding: 6px 20px;
+  color: #0d5b67;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+}
+
+.botonDescarga:active{
+  background-color: #ffffff;
+  padding: 6px 20px;
+  color: #0d5b67;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  border: 0;
+}
+
+
+.filtrar img {
+  margin: 0;
+  padding: 0;
+}
+
+.filtrar:hover {
+  background-color: #109BA2;
+}
+
+.filtrar:active {
+  background-color: #09595d;
+}
+
+.calendario {
+  cursor: pointer;
+  text-align: center;
+  height: 50px;
+  background-color: rgba(255, 250, 250, 0);
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-right: 1px solid #0C8C92;
+  color: #fff;
+  padding: 0 15px 0 15px;
+  background-repeat: no-repeat;
+  background-position: 4px 8px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.calendario img {
+  padding: 0;
+  margin: 5px 0 0 0;
+}
+
+.calendario:hover {
+  background-color: #109BA2;
+}
+
+.calendario:active {
+  background-color: #09595d;
+}
+.barraVertical {
+  float: left;
+  border-left: 1px solid #999999;
+  width: 1px;
+  height: 49px;
+}
+
+.gvc-navbar2 {
+  height: 50px;
+  padding: 0;
+  color: #FFFFFF !important;
+  background: #109ba2;
+  background: linear-gradient(135deg, #109ba2 0%, #41cbd2 100%);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.menu-responsive2 {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.menuItemsC{
+  z-index: 10;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.letras{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.letras li {
+  padding-left: 10px;
+}
+
+.titluoListaItems{
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.listaItems{
+  padding: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.listaItems li {
+  padding: 0 0 0 20px;
+  padding: 4px;
+  height: 30px;
+  width: 250px;
+}
+
+.fechaSelect{
+  display: block;
+  font-size: 12px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .fechaSelect{
+    display: inherit;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  .filtrar-informes:before{
+    content: "Filtrar Informes";
+    padding-left: 15px;
+  }
+
+  .menu-responsive1 {
+    float: left;
+    text-align: left;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px 0 ;
+  }
+
+  .menu-responsive1 li {
+    border-bottom : 1px solid #0C8C92;
+  }
+
+  .menu-responsive1 li:first-child {
+    border-top : 1px solid #0C8C92;
+  }
+
+  .filtrar{
+    cursor: pointer;
+    text-align: left;
+    height: 50px;
+    background-color: rgba(255, 250, 250, 0);
+    color: #fff;
+    width: 100vw;
+  }
+
+  .colorBarra2 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .filtrar:hover {
+    background-color: #109BA2;
+  }
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .filtrar .calendario:before{
+    content: "Fecha";
+  }
+
+  .filtrar-informes:before{
+    content: "Filtrar Informes";
+    padding-left: 15px;
+  }
+
+  .menu-responsive1 {
+    float: left;
+    text-align: left;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px 0 ;
+  }
+
+  .menu-responsive1 li {
+    border-bottom : 1px solid #0C8C92;
+  }
+
+  .menu-responsive1 li:first-child {
+    border-top : 1px solid #0C8C92;
+  }
+
+  .filtrar{
+    cursor: pointer;
+    text-align: left;
+    height: 50px;
+    background-color: rgba(255, 250, 250, 0);
+    color: #fff;
+    width: 88vw;
+  }
+
+  .colorBarra2 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .filtrar:hover {
+    background-color: #109BA2;
+  }
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+
+  .filtrar-informes:before{
+    content: "Filtrar Informes";
+    padding-left: 15px;
+  }
+
+  .menu-responsive1 {
+    float: left;
+    text-align: left;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px 0 ;
+  }
+
+  .menu-responsive1 li {
+    border-bottom : 1px solid #0C8C92;
+  }
+
+  .menu-responsive1 li:first-child {
+    border-top : 1px solid #0C8C92;
+  }
+
+  .filtrar{
+    cursor: pointer;
+    text-align: left;
+    height: 50px;
+    background-color: rgba(255, 250, 250, 0);
+    color: #fff;
+    width: 100vw;
+  }
+
+  .colorBarra2 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .filtrar:hover {
+    background-color: #109BA2;
+  }
+
+}
+
+@media (max-width: 575px) {
+
+  .filtrar-informes:before{
+    content: "Filtrar Informes";
+    padding-left: 15px;
+  }
+
+  .menu-responsive1 {
+    float: left;
+    text-align: left;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px 0 ;
+  }
+
+  .menu-responsive1 li {
+    border-bottom : 1px solid #0C8C92;
+  }
+
+  .menu-responsive1 li:first-child {
+    border-top : 1px solid #0C8C92;
+  }
+
+  .filtrar{
+    cursor: pointer;
+    text-align: left;
+    height: 50px;
+    background-color: rgba(255, 250, 250, 0);
+    color: #fff;
+    width: 100vw;
+  }
+
+  .colorBarra2 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .filtrar:hover {
+    background-color: #109BA2;
+  }
+}
+
+/* ==========================================================================
+    Carusel de Texto Sector Compañia Tipo de Informe
+   ========================================================================== */
+
+.carousel{
+  margin: 20px 20px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/right-arrow.svg") !important;
+  transform: rotate(180deg);
+}
+
+.carousel-control-next-icon {
+  background-image: url("../../../assets/img/imagenes_comunes/interfaz/right-arrow.svg") !important;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 15%;
+  text-align: center;
+  opacity: .8;
+  cursor: pointer;
+}
+
+.carousel-control{
+  top: 180px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+
+.carousel-indicators li {
+  position: relative;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  background-color: #666666;
+  border-radius: 10px;
+}
+
+.carousel-indicators .active {
+  background-color: #24AEB5;
+}
+
+/* Date Picker */
+.theme-green .bs-datepicker-head {
+  background-color: #24AEB5 !important;
+}
+
+.form-control {
+  visibility: hidden;
+  display: block;
+  width: 100%;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: #37c1c8;
+}
+
+.theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span,
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+  background-color: #37c1c8;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: #37c1c8;
+}
+
+.bs-datepicker-container {
+  padding: 0 !important;
+}
+
+
+.columnaItems{
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
+}
+.rowdeItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.itemListaDrop{
+  color: #333 !important;
+  border: 0 !important;
+}
+
+.gvc-dropdown-menu{
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  overflow: auto;
+  max-height: 300px;
+  min-width: 100%;
+  width: 500px;
+  left: 0;
+  right: auto;
+  top: 100%;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+.show{
+  display: flex !important;
+}
+a.dropdown-item.itemListaDrop {
+  width: 300px;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  text-decoration: none;
+  background-color: #37c1c8;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 20px;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff !important;
+  background-color: #37c1c8;
+}
+
+li [role="menuitem"]{
+  border: 0 !important;
+}
+
+@media only screen and (max-device-width: 767px) {
+  .botonDescarga{
+    margin: 0 0 10px 10px;
+  }
+}
+
+.itemSeleccionado{
+  color: #0d5b67;
+  font-size: 12px;
+  font-weight: 800;
+  font-family: "Titillium Web", sans-serif;
+  line-height: 1;
+}

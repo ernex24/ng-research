@@ -1,0 +1,57 @@
+import { LOGIN_CONSTANTS, LOGIN_DI_CONSTANTS } from './acceso/login/login-constants';
+import { LoginGuard } from './acceso/login/login.guard';
+import { LoginService } from './acceso/login/login.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { SpinnerComponent } from './core/spinner/spinner.component';
+import { UtilsCifradorService } from './core/utils-cifrador/utils-cifrador.service';
+import { SesionModel } from './shared/sesion/sesion.model';
+import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+
+/**
+ * Objecto que carga las traducciones mediante json.
+ */
+export function HttpLoaderFactory (http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    SpinnerComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    SharedModule,
+    CoreModule
+  ],
+  providers: [
+    LoginService,
+    {
+       provide: LOGIN_CONSTANTS,
+       useValue: LOGIN_DI_CONSTANTS
+     },
+    LoginGuard,
+    UtilsCifradorService,
+    SesionModel
+  ],
+  bootstrap: [AppComponent, SpinnerComponent]
+})
+export class AppModule { }

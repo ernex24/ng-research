@@ -1,0 +1,73 @@
+<div>
+  <ul class="listaPadreCarrusel">
+    <li class="tituloLista">
+      <ul class="rowItem">
+        <li class="titulopdelalista"><h5>Nuestros Últimos Eventos</h5></li>
+      </ul>
+    </li>
+    <li class="">
+      <ul class="">
+        <li class="caruselEventosContainer">
+          <carousel>
+            <slide>
+              <ul class="listaItemsCarrusel">
+                <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Video</p>
+                      <p class="eventosCard_titulo">Titulo del video</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del audio que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                  <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconVideo.svg"></p>
+                  <img src="assets/img/imagenes_comunes/interfaz/video-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                </li>
+              </ul>
+            </slide>
+              <slide>
+                <ul class="listaItemsCarrusel">
+                  <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Audio</p>
+                      <p class="eventosCard_titulo">Titulo del Audio</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del audio que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                    <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconAudio.svg"></p>
+                    <img src="assets/img/imagenes_comunes/interfaz/audio-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                  </li>
+                </ul>
+              </slide>
+            <slide>
+              <ul class="listaItemsCarrusel">
+              <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Video</p>
+                      <p class="eventosCard_titulo">Titulo del video</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del video que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconVideo.svg"></p>
+                <img src="assets/img/imagenes_comunes/interfaz/video-content.png" alt="First slide" style="display: block; min-width: 100%;">
+              </li>
+            </ul>
+              </slide>
+              <slide>
+                <ul class="listaItemsCarrusel">
+                  <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Audio</p>
+                      <p class="eventosCard_titulo">Titulo del audio</p>
+                      <p class="eventosCard_descripcion">Descripción del titulo del audio que puede ocupar varias lineas</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                      </span>
+                    <p class="eventosCard_icono"><img src="assets/img/imagenes_comunes/interfaz/iconAudio.svg"></p>
+                    <img src="assets/img/imagenes_comunes/interfaz/audio-content.png" alt="First slide" style="display: block; min-width: 100%;">
+                  </li>
+                </ul>
+              </slide>
+          </carousel>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

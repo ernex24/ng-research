@@ -1,0 +1,64 @@
+
+
+<!-- Modal menu perfil -->
+<div [collapse]="isCollapsed3">
+  <div class="my-modal" (click)="isCollapsed3 = !isCollapsed3" >
+    <div class="row margin15">
+      <button type="button" class="close botonCerrar gvc-close" > <span aria-hidden="true">&times;</span> </button>
+      <div class="col-xl-12 col-lg-12 col-md-12 profileSeguridad">
+        <ul class="menuProfile">
+          <li><img src="assets/img/imagenes_comunes/interfaz/menuPerfil.svg" alt=""></li>
+          <li><span class="tituloMenuProfile">{{ 'MenuPerfil.Perfil' | translate }}</span></li>
+          <li class="menuProfileItem"><a (click)="cambiarMail(email)" >{{ 'MenuPerfil.EmailAsociado' | translate }}</a></li>
+          <li class="menuProfileItem"><a (click)="cambiarContrasenya(contrasenya)">{{ 'MenuPerfil.CambiarContrasenya' | translate }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Menu superior -->
+<nav class="navbar navbar-expand-lg navbar-dark colorBarra">
+  <a class="navbar-brand navTitle" [ngClass]="setNavClasses()"></a>
+  <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" >
+    <ul class="navbar-nav ml-auto listaMenuPerfil">
+        <li class="userHola" (click)="isCollapsed3 = !isCollapsed3">{{ 'Navbar.Hola' | translate }} </li>
+        <li class="userName" (click)="isCollapsed3 = !isCollapsed3">{{ nombre | titlecase }} </li>
+        <li class="companyName" (click)="isCollapsed3 = !isCollapsed3">{{ empresa | titlecase }} </li>
+        <li class="" (click)="isCollapsed3 = !isCollapsed3"> <img class="icon-menuNav" src="assets/img/imagenes_comunes/interfaz/ico-hPerfil.svg"> </li>
+        <li class="log-out" (click)="openModalSalir()"> <img class="icon-menuNav" src="assets/img/imagenes_comunes/interfaz/icoh-Logout.svg"></li>
+    </ul>
+
+    <!-- parte adjunta del menu superior para dispositivos moviles con el menu lateral -->
+    <ul class="navbar-nav ml-auto menuLateral2" >
+      <li class="nav-item active menuResponsive1 menu-1 ">
+        <a class="nav-link " routerLink="/home/informes" >{{ 'Sidebar.Menu-1' | translate }}</a>
+      </li>
+      <li class="nav-item  menu-2">
+        <a class="nav-link" routerLink="/home/recomendaciones" >{{ 'Sidebar.Menu-2' | translate }}</a>
+      </li>
+      <li class="nav-item menu-3">
+        <a class="nav-link" routerLink="/home/dividendos" >{{ 'Sidebar.Menu-3' | translate }}</a>
+      </li>
+      <li class="nav-item menu-4">
+        <a class="nav-link " >{{ 'Sidebar.Menu-4' | translate }}</a>
+      </li>
+      <li class="nav-item menu-5">
+        <a class="nav-link " routerLink="/home/favoritos" >{{ 'Sidebar.Menu-5' | translate }}</a>
+      </li>
+      <li class="nav-item redes">
+        <a ><span id="facebook"></span></a><a href="#" ><span id="instagram"></span></a><a href="#" ><span id="twitter"></span></a><a href="#" ><span id="youtube"></span></a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+
+
+
+
+
+
+

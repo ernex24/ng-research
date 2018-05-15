@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+import { InfoNavBarService } from '../informes/info-navbar/info-navbar.service';
+
+@Component({
+  selector: 'app-dividendos',
+  templateUrl: './dividendos.component.html'
+
+})
+export class DividendosComponent implements OnInit {
+
+
+
+  ngOnInit() {
+  }
+
+}

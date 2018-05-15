@@ -1,0 +1,39 @@
+<div class="menuHeaderG "></div>
+<ul class="sidebar-navG menuLateralG">
+  <li class="active menu-1" routerLink="/home/informes">
+    <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" [ngClass]="setClasses()" >
+      <span class="titulo-h3">{{ 'Sidebar.Menu-1' | translate }}</span>
+      <img src="assets/img/imagenes_comunes/interfaz/ico-mlFlecha.png" alt="">
+    </a>
+  </li>
+  <li class="menu-2" routerLink="/home/recomendaciones">
+    <a routerLinkActive="active-link" [ngClass]="setClasses2()">
+      <span class="titulo-h3">{{ 'Sidebar.Menu-2' | translate }}</span>
+      <img src="assets/img/imagenes_comunes/interfaz/ico-mlFlecha.png" alt=""/>
+    </a>
+  </li>
+  <li class="menu-3" routerLink="/home/dividendos" >
+    <a routerLinkActive="active-link" [ngClass]="setClasses3()">
+      <span class="titulo-h3">{{ 'Sidebar.Menu-3' | translate }}</span>
+      <img src="assets/img/imagenes_comunes/interfaz/ico-mlFlecha.png" alt="">
+    </a>
+  </li>
+  <li class="menu-4" >
+    <a>
+      <span class="titulo-h3" routerLinkActive="active-link" >{{ 'Sidebar.Menu-4' | translate }}</span>
+      <img src="assets/img/imagenes_comunes/interfaz/ico-mlFlecha.png" alt="">
+    </a>
+  </li>
+  <li class="menu-5" routerLink="/home/favoritos" >
+    <a routerLinkActive="active-link" [ngClass]="setClasses4()" >
+      <span class="titulo-h3">{{ 'Sidebar.Menu-5' | translate }}</span>
+      <img src="assets/img/imagenes_comunes/interfaz/ico-mlFlecha.png" alt="">
+    </a>
+  </li>
+  <li class="redes"><a><span id="facebook">
+  </span></a><a><span id="linkedin"></span></a><a><span id="twitter"></span></a><a><span id="youtube"></span></a></li>
+</ul>
+
+
+
+<!--  -->

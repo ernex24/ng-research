@@ -1,0 +1,65 @@
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { RECUPERAR_CONTRASENYA_CONSTANTS } from './recuperar-contrasenya-constants';
+import { IRecuperarContrasenyaConstants } from './recuperar-contrasenya-constants.interface';
+import { RecuperarContrasenyaService } from './recuperar-contrasenya.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-recuperar-contrasenya',
+  templateUrl: './recuperar-contrasenya.component.html',
+})
+export class RecuperarContrasenyaComponent implements OnInit, OnDestroy {
+
+  recuperarContrasenaForm: FormGroup;
+  numero1: number;
+  numero2: number;
+  submited$: Observable<boolean>;
+  errorMessageDescripcion: string = '';
+  private subscriptionRecuperarContrasenya: Subscription;
+
+
+  constructor(private translate: TranslateService,
+    @Inject(RECUPERAR_CONTRASENYA_CONSTANTS) private constantsRecuperarContrasenya: IRecuperarContrasenyaConstants,
+    private recuperarContrasenyaService: RecuperarContrasenyaService,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService) { }
+
+  ngOnInit(): void {
+    // Gestion del form
+     this.recuperarContrasenaForm = new FormGroup({
+     'username': new FormControl(null, [Validators.required]),
+     'resultado': new FormControl(null, [Validators.required])
+    });
+
+      // Escucho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+
+    // Escuchamos la peticion al Servicio
+    this.subscriptionRecuperarContrasenya = this.recuperarContrasenyaService.errorMessageDescripcionChanged.subscribe(
+      (error: string) => this.errorMessageDescripcion = error);
+
+    // Inicializamos los digitos para el captcha
+    this.numero1 = this.utilsAccesoService.actualizarNumero();
+    this.numero2 = this.utilsAccesoService.actualizarNumero();
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribo
+    this.subscriptionRecuperarContrasenya.unsubscribe();
+  }
+
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+
+    // LLamamos al servicio de recuperar contraseña
+      this.recuperarContrasenyaService.getContrasenya(this);
+  }
+}

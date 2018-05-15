@@ -1,0 +1,19 @@
+<div>
+  <ul class="listaPadre">
+    <li class="tituloLista">
+      <ul class="rowItem">
+        <li class="titulopdelalista"><h5>Noticias</h5></li>
+      </ul>
+    </li>
+
+    <li class="itemLista" *ngFor=" let noticia of Noticias" >
+      <ul class="columnItem">
+        <li class="seccionNoticia">{{ noticia.seccionDeNoticias }}</li>
+        <li class="tituloNoticia"><h5>{{ noticia.tituloNoticias }}</h5></li>
+        <li class="fechaNoticia">{{ noticia.fechaNoticias }}</li>
+        <li class="contenidoNoticia">{{ noticia.Noticias }}</li>
+      </ul>
+    </li>
+
+  </ul>
+</div>

@@ -1,0 +1,39 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+
+import {CollapseModule} from 'ngx-bootstrap';
+import {PanelComponent} from './panel/panel.component';
+import {InfoNavbarComponent} from './info-navbar/info-navbar.component';
+import {InformesRoutingModule} from './informes-routing.module';
+import {InformesComponent} from './informes.component';
+import { CarouselModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
+import {AgGridModule} from 'ag-grid-angular';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslateModule.forChild(),
+    CollapseModule.forRoot(),
+    InformesRoutingModule,
+    CarouselModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    TypeaheadModule.forRoot(),
+    FormsModule,
+    AgGridModule.withComponents([ ])
+  ],
+  declarations: [
+    InformesComponent,
+    PanelComponent,
+    InfoNavbarComponent
+  ]
+})
+export class InformesModule {
+}

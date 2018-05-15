@@ -1,0 +1,73 @@
+<div>
+  <ul class="listaPadreCarrusel">
+    <li class="tituloLista">
+      <ul class="rowItem">
+        <li class="titulopdelalista"><h5>Próximos Eventos</h5></li>
+      </ul>
+    </li>
+    <li class="">
+      <ul class="">
+        <li class="caruselEventosContainer">
+          <carousel>
+            <slide>
+              <ul class="listaItemsCarrusel">
+                <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Perspectivas financieras 2018</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                  <button class="eventosCard_boton">Suscríbete</button>
+                  <div class="eventosCard_fondo"></div>
+                </li>
+                <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Análisis NASDAQ</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                  <button class="eventosCard_boton">Suscríbete</button>
+                  <div class="eventosCard_fondo"></div>
+                </li>
+              </ul>
+            </slide>
+            <slide>
+              <ul class="listaItemsCarrusel">
+                <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Análisis IBEX35</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                  <button class="eventosCard_boton">Suscríbete</button>
+                  <div class="eventosCard_fondo"></div>
+                </li>
+                <li>
+                      <span class="eventosCard">
+                      <p class="eventosCard_tipo">Eventos</p>
+                      <p class="eventosCard_titulo">Invitado Especial</p>
+                        <p class="eventosCard_fecha">24.10.2018</p>
+                        <p class="eventosCard_direccion">Dirección, calle Av, numero, sala.</p>
+                      <p class="eventosCard_descripcion">Descripción del evento que puede ocupar varias lineas, temas a
+                        tratar ponentes etc</p>
+                      </span>
+                  <button class="eventosCard_boton">Suscríbete</button>
+                  <div class="eventosCard_fondo"></div>
+                </li>
+              </ul>
+            </slide>
+          </carousel>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

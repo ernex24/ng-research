@@ -1,0 +1,20 @@
+
+<div class="container-fluid marginTop15" >
+  <div class="row">
+    <div class="col" id='grid-wrapper'>
+      <div id="myGrid" style="width: 100%; max-height: 100%;">
+        <ag-grid-angular
+                 class="ag-fresh"
+                 [rowData]="rowData"
+                 [columnDefs]="columnDefs"
+                 [enableSorting]="true"
+                 [domLayout]="domLayout"
+                 [gridOptions]="gridOptions"
+                 [headerHeight]="40"
+                 (gridSizeChanged)="onGridSizeChanged($event)"
+                 (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</div>

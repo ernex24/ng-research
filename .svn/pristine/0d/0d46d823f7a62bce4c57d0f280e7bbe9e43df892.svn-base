@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { InfoNavBarService } from '../../shared/info-navbar.service';
+
+import { FormControl, FormGroup } from '@angular/forms';
+
+import 'rxjs/add/observable/of';
+
+@Component({
+  selector: 'app-informes',
+  templateUrl: './informes.component.html',
+  styleUrls: ['./informes.component.css'],
+  providers: [ InfoNavBarService,
+    { provide: CarouselConfig, useValue: { interval: 0, noPause: true, showIndicators: true } }
+  ],
+})
+export class InformesComponent {
+  // Calendario
+  minDate = new Date(2017, 5, 10);
+  maxDate = new Date(2018, 9, 15);
+  bsValue: Date = new Date();
+  bsRangeValue: any = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
+  listaEmpresas = []
+  listaSectores = []
+  listaInformes = []
+  customSelected: string;
+
+  constructor(servicio: InfoNavBarService) {
+    this.listaEmpresas = servicio.getEmpresas();
+    this.listaSectores = servicio.getSectores();
+    this.listaInformes = servicio.getInformes();
+  }
+
+}

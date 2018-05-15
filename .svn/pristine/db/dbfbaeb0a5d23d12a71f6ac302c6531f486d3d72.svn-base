@@ -1,0 +1,8 @@
+
+  <div class="modal-body">
+		<div>
+        <h2>{{texto}}</h2>
+        <h3>{{title}}</h3>
+		    <span id="preLoader"></span>
+    </div>
+ </div>

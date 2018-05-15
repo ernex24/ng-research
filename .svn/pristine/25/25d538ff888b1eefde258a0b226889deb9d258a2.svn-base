@@ -1,0 +1,11 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
+
+export class UtilsButtonService {
+  submitedButtonChanged = new BehaviorSubject<boolean>(false);
+
+  toggleShow(showPassword: boolean): boolean {
+      return showPassword = !showPassword;
+  }
+
+}

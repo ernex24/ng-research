@@ -1,0 +1,140 @@
+import { APP_CONSTANTS } from '../../app-constants';
+import { IAppConstants } from '../../app-constants.interface';
+import { ModalService } from '../../core/modal/modal.service';
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { UtilsCifradorModel } from '../../core/utils-cifrador/utils-cifrador.model';
+import { UtilsCifradorService } from '../../core/utils-cifrador/utils-cifrador.service';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { VALIDAR_USUARIO_CONSTANTS } from './validar-usuario-constants';
+import { IValidarUsuarioConstants } from './validar-usuario-constants.interface';
+import { ValidarUsuarioComponent } from './validar-usuario.component';
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Subject } from 'rxjs/Subject';
+
+@Injectable()
+export class ValidarUsuarioService {
+
+  constructor(private translate: TranslateService,
+    private httpClient: HttpClient,
+    @Inject(APP_CONSTANTS) private constants: IAppConstants,
+    @Inject(VALIDAR_USUARIO_CONSTANTS) private constantsValidar: IValidarUsuarioConstants,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService,
+    private dataStorageService: DataStorageService,
+    private utilsCifradorService: UtilsCifradorService,
+    private modalService: ModalService,
+    private router: Router) { }
+
+    errorMessageDescripcionChanged = new Subject<string>();
+
+  getValidarUsuario(validarUsuarioComponent: ValidarUsuarioComponent) {
+       // Comprobamos el resultado del captcha y si las contraseñas son iguales
+     if (validarUsuarioComponent.validarUsuarioForm.value.passwordNew ===
+       validarUsuarioComponent.validarUsuarioForm.value.passwordConf &&
+       validarUsuarioComponent.validarUsuarioForm.value.resultado ===
+       validarUsuarioComponent.numero1 + validarUsuarioComponent.numero2) {
+
+        // Captcha correcto llamamos al servicio de recuperar contraseña
+        this.errorMessageDescripcionChanged.next('');
+        this.validarUsuario(validarUsuarioComponent);
+      } else {
+        // Actualizamos con los numeros de la operacion para el captcha
+        validarUsuarioComponent.numero1 = this.utilsAccesoService.actualizarNumero();
+        validarUsuarioComponent.numero2 = this.utilsAccesoService.actualizarNumero();
+        if (validarUsuarioComponent.validarUsuarioForm.value.passwordNew !==
+        validarUsuarioComponent.validarUsuarioForm.value.passwordConf) {
+            // Las contraseñas no son iguales
+            this.translate.get('ValidarUsuarioComponent.ContrasenyaIncorrecta').subscribe(
+                mensaje => {
+                  // Informamos el error de Resultado Incorrecto
+                  this.errorMessageDescripcionChanged.next(mensaje);
+                }
+              );
+        } else if (validarUsuarioComponent.validarUsuarioForm.value.resultado !==
+          validarUsuarioComponent.numero1 + validarUsuarioComponent.numero2) {
+
+            // Resultado incorrecto del Captcha
+            this.translate.get('ValidarUsuarioComponent.ResultadoIncorrecto').subscribe(
+                mensaje => {
+                  // Informamos el error de Resultado Incorrecto
+                  this.errorMessageDescripcionChanged.next(mensaje);
+                }
+              );
+        }
+      }
+      // Habilito el boton
+      this.utilsButtonService.submitedButtonChanged.next(false);
+    }
+
+  private validarUsuario (validarUsuarioComponent: ValidarUsuarioComponent) {
+     const utilCifrador = this.utilsCifradorService.encriptarDatos(
+      new UtilsCifradorModel(this.constants.SECRET_PASSPHRASE, this.constants.KEY_HMAC_SHA1, '',
+         [validarUsuarioComponent.validarUsuarioForm.value.passwordNew]));
+
+    const id_link = validarUsuarioComponent.id_link;
+    const idioma = validarUsuarioComponent.idioma;
+
+    utilCifrador.estructura = idioma + this.constants.HMAC_SEPARATOR + id_link + this.constants.HMAC_SEPARATOR +
+                              utilCifrador.arrayDatos[0];
+
+    const hash = this.utilsCifradorService.generadorHMACPublico(utilCifrador);
+
+    const request = {
+      'ANA_ActivarUsuario_Request': {
+        'token': hash,
+        'idioma': idioma,
+        'idLink': id_link,
+        'data_01': utilCifrador.arrayDatos[0].toString(),
+      }
+    };
+
+    const req = new HttpRequest(this.constants.HTTP_REQUEST, this.dataStorageService.ejecutarServicio()
+                + this.constantsValidar.URL_VALIDAR_USUARIO, request, { reportProgress: true });
+    // Realizamos la llamada Request
+    this.httpClient.request(req).subscribe(
+      (evento: HttpEvent<any>) => {
+        switch (evento.type) {
+          case HttpEventType.Sent:
+            // Abrimos el modal de cargando mientras se esta enviando la petición
+            const titulo = this.translate.get('Modal.AccesoValidarUsuario');
+            const imagen = this.translate.get('Modal.AccesoImagen');
+            const texto = this.translate.get('Modal.AccesoTexto');
+
+            this.modalService.openCargando(titulo, imagen, texto);
+            break;
+
+          case HttpEventType.Response: {
+            // Cerramos el modal de cargando cuando tenemos la respuesta
+            this.modalService.closeModal();
+            // Habilitamos el boton
+            this.utilsButtonService.submitedButtonChanged.next(false);
+
+            // Comprobamos el resultado de la llamada Request
+             this.dataStorageService.sesion = { ... evento.body.ANA_ActivarUsuario_Response };
+            // Rediriger al login
+            this.router.navigate(['login']);
+          }
+        }
+      },
+      (error: any) => {
+        this.modalService.closeModal();
+        // Habilitamos el boton
+        this.utilsButtonService.submitedButtonChanged.next(false);
+        // Recuperamos el mensaje de error genérico
+        this.mostrarError(this.constantsValidar.URL_VALIDAR_USUARIO);
+      });
+  }
+
+   private mostrarError(error: string): void {
+    // Recuperamos el mensaje de error genérico
+    this.translate.get('Comun.ErrorPeticion', { server: error }).subscribe(
+      mensaje => {
+        // Informamos del error
+        this.errorMessageDescripcionChanged.next(mensaje);
+      });
+  }
+}

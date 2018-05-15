@@ -1,0 +1,64 @@
+import { UtilsAccesoService } from '../../core/utils-acceso/utils-acceso.service';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { UtilsButtonService } from '../../core/utils-button/utils-button.service';
+import { DESBLOQUEAR_USUARIO_CONSTANTS } from './desbloquear-usuario-constants';
+import { IDesbloquearUsuarioConstants } from './desbloquear-usuario-constants.interface';
+import { DesbloquearUsuarioService } from './desbloquear-usuario.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-desbloquear-usuario',
+  templateUrl: './desbloquear-usuario.component.html'
+  })
+export class DesbloquearUsuarioComponent implements OnInit, OnDestroy {
+
+  desbloquearUsuarioForm: FormGroup;
+  numero1: number;
+  numero2: number;
+  submited$: Observable<boolean>;
+  errorMessageDescripcion: string = '';
+  private subscriptionDesbloquearUsuario: Subscription;
+
+  constructor(private translate: TranslateService,
+    @Inject(DESBLOQUEAR_USUARIO_CONSTANTS) private constantsDesbloquearUsuario: IDesbloquearUsuarioConstants,
+    private desbloquearUsuarioService: DesbloquearUsuarioService,
+    private utilsButtonService: UtilsButtonService,
+    private utilsAccesoService: UtilsAccesoService) { }
+
+  ngOnInit() {
+    // Gestion del form
+    this.desbloquearUsuarioForm = new FormGroup({
+      'username': new FormControl(null, [Validators.required]),
+      'resultado': new FormControl(null, [Validators.required])
+    });
+
+    // Escurcho el submit del boton
+    this.submited$ = this.utilsButtonService.submitedButtonChanged;
+
+    // Escuchamos la peticion al Servicio
+    this.subscriptionDesbloquearUsuario = this.desbloquearUsuarioService.errorMessageDescripcionChanged.subscribe(
+      (error: string) => this.errorMessageDescripcion = error);
+
+    // Inicializamos los digitos para el captcha
+    this.numero1 = this.utilsAccesoService.actualizarNumero();
+    this.numero2 = this.utilsAccesoService.actualizarNumero();
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribo
+    this.subscriptionDesbloquearUsuario.unsubscribe();
+  }
+
+  onSubmit() {
+    // Inicializo los mensajes de error
+    this.errorMessageDescripcion = '';
+    // Deshabilito el boton
+    this.utilsButtonService.submitedButtonChanged.next(true);
+
+    // LLamamos al servicio de recuperar contraseña
+    this.desbloquearUsuarioService.getDesbloqueo(this);
+  }
+}

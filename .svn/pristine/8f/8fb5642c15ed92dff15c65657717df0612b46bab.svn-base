@@ -1,0 +1,85 @@
+/* ==========================================================================
+    Requisitos minimos
+   ========================================================================== */
+
+.overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  visibility: hidden;
+  background-color:-o-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(86, 247, 255, 0.8));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 767px) {
+
+  .overlay {
+    z-index: 20;
+    overflow: scroll;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100vw;
+    visibility: visible;
+    background-image: url("../assets/img/imagenes_comunes/interfaz/fondo.png");
+    background-size: auto, 100vw;
+  }
+
+  .resize {
+    min-width: 100%;
+    margin-top: -50%;
+  }
+
+  .overlayContainer {
+    display: block;
+    height: 300px;
+    width: 430px;
+    margin-top: 250px;
+    border-radius: 10px 10px 10px 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  .overlayContainer h2 {
+    padding-top: 25px;
+  }
+
+  .resizelogo {
+    width: 40%;
+  }
+
+  .alertas {
+    display: none;
+  }
+
+  .modalContenedor {
+    display: none;
+  }
+
+  .modal-backdrop {
+    display: none;
+  }
+
+  #wrapper {
+    padding-left: 90px;
+    display: none;
+  }
+
+  #page-content-wrapper {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-device-width: 767px) {
+
+  .overlay {
+    visibility: hidden;
+  }
+
+}
+

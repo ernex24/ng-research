@@ -1,0 +1,16 @@
+
+            <div class="modal-content modalContenedorLegal">
+                  <button type="button" class="close botonCerrar" (click)="bsModalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <img class="logoFooter" src="assets/img/imagenes_comunes/logo/gvc_logo.svg" alt="">
+                  <div class="modalContenedorLegal_texto">
+                        <h1>{{ 'FooterComponent.PoliticaPrivacidad' | translate }}</h1>
+                        <br>
+                        <h2><strong>{{ 'FooterComponent.Privacidadp1' | translate }}</strong></h2>
+                        <br/>
+                        <p>{{ 'FooterComponent.Privacidadp2' | translate }}</p>
+                        <br/>
+                        <p>{{ 'FooterComponent.Privacidadp3' | translate }}</p>
+                  </div>
+            </div>

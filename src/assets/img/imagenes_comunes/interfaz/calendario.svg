@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15375 -16051.999 23 23">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="calendario" transform="translate(-15375 -16051.999)">
+    <g id="Group_2558" data-name="Group 2558">
+      <path id="Path_1754" data-name="Path 1754" class="cls-1" d="M125.39,4.313h.06a1.078,1.078,0,0,0,1.078-1.078V1.078A1.078,1.078,0,0,0,125.45,0h-.06a1.078,1.078,0,0,0-1.078,1.078V3.234A1.078,1.078,0,0,0,125.39,4.313Z" transform="translate(-119.64)"/>
+      <path id="Path_1755" data-name="Path 1755" class="cls-1" d="M421.827,4.313h.06a1.078,1.078,0,0,0,1.078-1.078V1.078A1.078,1.078,0,0,0,421.887,0h-.06a1.078,1.078,0,0,0-1.078,1.078V3.234A1.078,1.078,0,0,0,421.827,4.313Z" transform="translate(-404.937)"/>
+      <path id="Path_1756" data-name="Path 1756" class="cls-1" d="M20.125,76.5H19.107v.359a2.159,2.159,0,0,1-2.156,2.156h-.06a2.159,2.159,0,0,1-2.156-2.156V76.5H7.966v.359A2.159,2.159,0,0,1,5.81,79.016H5.75a2.159,2.159,0,0,1-2.156-2.156V76.5H2.875A2.875,2.875,0,0,0,0,79.375V93.75a2.875,2.875,0,0,0,2.875,2.875h17.25A2.875,2.875,0,0,0,23,93.75V79.375A2.875,2.875,0,0,0,20.125,76.5Zm1.438,17.25a1.439,1.439,0,0,1-1.437,1.438H2.875A1.439,1.439,0,0,1,1.438,93.75V82.25H21.563Z" transform="translate(0 -73.625)"/>
+      <circle id="Ellipse_9" data-name="Ellipse 9" class="cls-1" cx="1.767" cy="1.767" r="1.767" transform="translate(3.983 10.452)"/>
+      <circle id="Ellipse_10" data-name="Ellipse 10" class="cls-1" cx="1.767" cy="1.767" r="1.767" transform="translate(9.733 10.452)"/>
+      <circle id="Ellipse_11" data-name="Ellipse 11" class="cls-1" cx="1.767" cy="1.767" r="1.767" transform="translate(15.483 10.452)"/>
+      <circle id="Ellipse_12" data-name="Ellipse 12" class="cls-1" cx="1.767" cy="1.767" r="1.767" transform="translate(3.983 16.202)"/>
+      <circle id="Ellipse_13" data-name="Ellipse 13" class="cls-1" cx="1.767" cy="1.767" r="1.767" transform="translate(9.733 16.202)"/>
+      <circle id="Ellipse_14" data-name="Ellipse 14" class="cls-1" cx="1.767" cy="1.767" r="1.767" transform="translate(15.483 16.202)"/>
+    </g>
+  </g>
+</svg>
